@@ -216,6 +216,16 @@ add_action('admin_init', 'fluxor_admin_page_block');
               'slug'      => 'loco-translate', 
               'required'  => true, 
           ),
+          array(
+              'name'      => 'WooCommerce', 
+              'slug'      => 'woocommerce', 
+              'required'  => true, 
+          ),
+          array(
+              'name'      => 'Yith WooCommerce Product Slider', 
+              'slug'      => 'yith-woocommerce-product-slider-carousel', 
+              'required'  => true, 
+          ),
       );
   
       $config = array(

@@ -102,6 +102,26 @@
 }
 
 
+@media (max-width: 768px) {
+  
+  .product-breadcrumbs{
+    display: none;
+  }
+
+  .woocommerce-message{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .woocommerce-message a{
+    margin-top: 15px!important;
+  }
+
+
+}
+
+
 
 .shop-container {
   width: 100%;
@@ -124,6 +144,35 @@
   border-bottom: 1px solid var(--color-grey-light);
   font-weight: var(--font-medium);
 }
+
+@media (max-width: 768px) {
+  .category-list{
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-grey-light);
+  }
+
+  .category-list h3{
+    width:100%;
+  }
+
+
+  .shop-products {
+    display: inline;
+  }
+
+  .products{
+    width: 100%!important;
+  }
+
+  .woocommerce ul.products[class*=columns-] li.product, .woocommerce-page ul.products[class*=columns-] li.product{
+    width: 100%;
+  }
+
+}
+
+
 
 .toggle-link{
   display: flex!important;
@@ -254,8 +303,8 @@ li.has-children.open > .submenu-container { display: block; }
 }
 
 .woocommerce ul.products li.product .button{
-  background-color: var(--color-primary);
-  color: var(--color-default);
+  background-color: var(--color-orange);
+  color: var(--color-white);
   font-size: 0.70rem!important;
   font-weight: var(--font-semi-bold);
   text-transform: uppercase;
@@ -347,6 +396,23 @@ li.has-children.open > .submenu-container { display: block; }
     margin-right: 0px;
   }
 
+  .related-products{
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .woocommerce ul.products li.product .button{
+    font-size: 0.9rem!important;
+  }
+
+  .woocommerce-loop-product__title{
+    font-size: 1.4rem!important;
+  }
+
+  .woocommerce-Price-amount{
+    font-size: 1.2rem;
+  }
 
 }
 
@@ -377,13 +443,6 @@ li.has-children.open > .submenu-container { display: block; }
 }
 
 
-@media (max-width: 768px) {
-
-  .price{
-    font-size: 1.1rem;
-  }
-
-}
 
 .description-short {
   margin: 10px 0;
@@ -415,7 +474,8 @@ li.has-children.open > .submenu-container { display: block; }
 }
 
 .single_add_to_cart_button{
-  background-color: var(--color-primary)!important;
+  background-color: var(--color-orange)!important;
+  color:var(--color-white)!important;
   margin-top: 30px!important;
 }
 
@@ -423,7 +483,7 @@ li.has-children.open > .submenu-container { display: block; }
 .woocommerce-product-gallery__wrapper div{
     float: left;
     width: 24%;
-    margin:15px 1% 15px 0;
+    margin:0 1% 15px 0;
 }
 .woocommerce-product-gallery__wrapper div img{
     width: 100%;
@@ -431,12 +491,60 @@ li.has-children.open > .submenu-container { display: block; }
 
 .woocommerce-product-gallery__wrapper div:first-child{
     width: 100%;
-    margin:10px 0;
+    margin:10px 0 0 0;
 }
 
 .woocommerce-product-gallery__wrapper div:last-child{
-    margin:10px 0;
+    margin:0 0 15px 0;
 }
+
+.back-button-mobile{
+  display: none;
+  padding: 0 15px;
+}
+
+.back-button-mobile a{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-weight: var(--font-semi-bold);
+  color: var(--color-default);
+}
+
+.back-button-mobile i{
+  margin-right: 4px;
+  font-size: 1.4rem;
+}
+
+
+@media (max-width: 768px) {
+
+  .price{
+    font-size: 1.1rem;
+  }
+
+  .product-details h1{
+    font-size: 1.5rem;
+  }
+
+  .product-description{
+    padding: 0 15px;
+    margin-top: 30px;
+    font-size: 0.9rem;
+  }
+
+  .product-description h3{
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+
+  .back-button-mobile{
+    display: block;
+  }
+
+}
+
 
 
 
@@ -618,7 +726,7 @@ li.has-children.open > .submenu-container { display: block; }
 
 .woocommerce button.button.alt{
   height: 50px;
-  background-color: var(--color-primary);
+  background-color: var(--color-orange);
   color: var(--color-default);
   font-size: 0.75rem!important;
   letter-spacing: 1px;
@@ -626,7 +734,7 @@ li.has-children.open > .submenu-container { display: block; }
   text-transform: uppercase;
 }
 .woocommerce button.button.alt:hover{
-  background-color: var(--color-primary);
+  background-color: var(--color-orange);
   color: var(--color-default);
 }
 
@@ -936,6 +1044,11 @@ li.has-children.open > .submenu-container { display: block; }
   .my-account-container{
     padding: 20px;
   }
+
+  .woocommerce button.button.alt{
+    font-size: 0.8rem!important;
+  }
+
 
 
 }

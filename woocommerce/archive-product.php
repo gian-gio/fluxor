@@ -7,6 +7,13 @@
     </div>
 </div>
 
+<div class="product-breadcrumbs">
+    <div class="grid--xl">
+        <?php woocommerce_breadcrumb(); ?>
+    </div>
+</div>
+
+
 
 <div class="grid--xl">
 

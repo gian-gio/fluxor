@@ -1,5 +1,21 @@
 <?php get_header(); ?>
 
+<div class="grid--xl">
+    <div class="col-xl-100">
+        <div class="mt-30">
+            <?php wc_print_notices(); ?>
+        </div>
+    </div>
+</div>
+
+<div class="back-button-mobile">
+    <div class="grid--xl">
+        <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>">
+            <i class='bx bxs-chevron-left'></i> <span>TORNA ALLO SHOP</span>
+        </a>
+    </div>
+</div>
+
 <div class="product-breadcrumbs">
     <div class="grid--xl">
         <?php woocommerce_breadcrumb(); ?>
@@ -7,7 +23,7 @@
 </div>
 
 <div class="grid--xl">
-    
+        
     <!--Single Procuct-->
     <?php while (have_posts()) : the_post(); ?>
     
