@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 12:25+0000\n"
+"POT-Creation-Date: 2025-09-25 13:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -119,6 +119,10 @@ msgstr ""
 msgid "Default Logo"
 msgstr ""
 
+#: woocommerce/single-product.php:31
+msgid "Description"
+msgstr ""
+
 #: functions/customizer.php:99
 msgid "Enter your WhatsApp phone number (ex: 3912345678)."
 msgstr ""
@@ -227,7 +231,7 @@ msgstr ""
 msgid "My Account Page"
 msgstr ""
 
-#: woocommerce/archive-product.php:113
+#: woocommerce/archive-product.php:106
 msgid "Nessun prodotto trovato"
 msgstr ""
 
@@ -242,10 +246,6 @@ msgstr ""
 #. Name of the template
 #: page-template/page-reserved.php:2
 msgid "Pagina Riservata"
-msgstr ""
-
-#: woocommerce/single-product.php:45
-msgid "Product Description"
 msgstr ""
 
 #: functions.php:43

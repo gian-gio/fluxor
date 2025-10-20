@@ -101,8 +101,6 @@
                 ?>
             </div>
 
-           
-
             <?php if (woocommerce_product_loop()) : ?>
                 <?php woocommerce_product_loop_start(); ?>
                     <?php while (have_posts()) : the_post(); ?>
@@ -112,6 +110,9 @@
             <?php else : ?>
                 <p><?php esc_html_e('Nessun prodotto trovato', 'fluxor'); ?></p>
             <?php endif; ?>
+
+
+            
         </div>
     </div>
 </div>

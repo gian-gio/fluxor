@@ -158,6 +158,28 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// Add to cart input qty
+
+document.addEventListener('click', function(e) {
+  if (e.target.closest('.qty-btn')) {
+    const button = e.target.closest('.qty-btn');
+    const input = button.closest('.quantity-wrapper').querySelector('.qty');
+    let value = parseInt(input.value) || 1;
+    const min = parseInt(input.min) || 1;
+    const max = parseInt(input.max) || 999;
+
+    if (button.classList.contains('qty-plus') && value < max) {
+      input.value = value + 1;
+    }
+    if (button.classList.contains('qty-minus') && value > min) {
+      input.value = value - 1;
+    }
+
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+});
+
+
 /*  
   Gsap Animation
 ----------------------------------------------------------------------- */
