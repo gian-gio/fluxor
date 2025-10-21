@@ -59,7 +59,7 @@ $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_j
             do_action( 'woocommerce_single_variation' );
             ?>
 
-            <div class="custom-add-to-cart">
+            <div class="custom-add-to-cart flex">
                 <div class="quantity-wrapper">
                     <?php
                     woocommerce_quantity_input( array(
@@ -74,9 +74,12 @@ $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_j
                     </div>
                 </div>
 
-                <button type="submit" class="single_add_to_cart_button button alt">
-                    <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
-                </button>
+                <div>
+                    <button type="submit" class="single_add_to_cart_button button alt">
+                        <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
+                        <span class="span-cart"><i class='bx bx-cart-alt'></i></span>
+                    </button>
+                </div>
                 <input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />
                 <input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />
                 <input type="hidden" name="variation_id" class="variation_id" value="0" />
