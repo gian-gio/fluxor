@@ -180,6 +180,19 @@ document.addEventListener('click', function(e) {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const tabs = document.querySelectorAll(".tab-list li");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+    });
+  });
+});
+
+
+
+
 /*  
   Gsap Animation
 ----------------------------------------------------------------------- */

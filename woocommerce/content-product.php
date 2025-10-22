@@ -15,11 +15,11 @@ if (empty($product) || !$product->is_visible()) {
 			<?php echo woocommerce_get_product_thumbnail('full'); ?>
 
 			<?php if ($product->is_on_sale()) : ?>
-				<span class="badge sale-badge"><?php esc_html_e('In offerta', 'basetheme'); ?></span>
+				<span class="badge sale-badge"><?php esc_html_e('In offerta', 'fluxor'); ?></span>
 			<?php endif; ?>
 
 			<?php if (!$product->is_in_stock()) : ?>
-				<span class="badge outofstock-badge"><?php esc_html_e('Non disponibile', 'basetheme'); ?></span>
+				<span class="badge outofstock-badge"><?php esc_html_e('Non disponibile', 'fluxor'); ?></span>
 			<?php endif; ?>
 		</a>
 		<div class="product-add-to-cart">

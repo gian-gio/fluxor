@@ -89,17 +89,8 @@
         </div>
 
         <?php
-            global $product;
-            if ( $product ) {
-                $long_description = $product->get_description();
-                if ( $long_description ) {
-                    echo '<div class="product-description">';
-                    echo '<h3>' . esc_html__( 'Product Description', 'fluxor' ) . '</h3>';
-                    echo '<p>' . wp_kses_post( wpautop( $long_description ) ) . '</p>';
-                    echo '</div>';
-                }
-            }
-        ?>    
+            woocommerce_output_product_data_tabs();
+        ?>
 
 
     <?php endwhile; ?>
@@ -113,6 +104,7 @@
             ));
         ?>
     </div>
+
 
 
 </div>
