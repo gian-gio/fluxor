@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-17 12:25+0000\n"
-"PO-Revision-Date: 2025-10-17 12:25+0000\n"
+"POT-Creation-Date: 2025-10-23 09:55+0000\n"
+"PO-Revision-Date: 2025-10-23 10:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -31,6 +31,10 @@ msgstr ""
 msgid ""
 "A flexible and lightweight WordPress theme for blogs, portfolios, business "
 "sites, and WooCommerce stores. Fully responsive and easy to customize."
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:30
+msgid "Add to cart"
 msgstr ""
 
 #: single.php:36
@@ -96,6 +100,14 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
+#: woocommerce/single-product.php:58
+msgid "Brands:"
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:48
+msgid "Buy now"
+msgstr ""
+
 #: footer.php:71 footer.php:73
 msgid "Chat with us on WhatsApp"
 msgstr ""
@@ -103,6 +115,10 @@ msgstr ""
 #. Name of the template
 #: woocommerce/page-checkout.php:1
 msgid "Checkout Page"
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:35
+msgid "Choose options"
 msgstr ""
 
 #: functions/customizer.php:81
@@ -226,13 +242,21 @@ msgstr ""
 msgid "My Account Page"
 msgstr ""
 
-#: woocommerce/archive-product.php:113
+#: woocommerce/archive-product.php:111
 msgid "Nessun prodotto trovato"
 msgstr ""
 
 #: index.php:73
 msgid "No articles found: "
 msgstr ""
+
+#: woocommerce/content-product.php:22 woocommerce/loop/add-to-cart.php:41
+msgid "Not available"
+msgstr ""
+
+#: woocommerce/content-product.php:18
+msgid "On sale"
+msgstr "In offerta"
 
 #: 404.php:9
 msgid "Oops! That page can't be found."
@@ -241,10 +265,6 @@ msgstr ""
 #. Name of the template
 #: page-template/page-reserved.php:2
 msgid "Pagina Riservata"
-msgstr ""
-
-#: woocommerce/single-product.php:45
-msgid "Product Description"
 msgstr ""
 
 #: functions.php:43

@@ -27,25 +27,25 @@ $args = isset($args) ? wp_parse_args($args, $defaults) : $defaults;
  
 // Inizializza variabili per testo e icona
 $button_icon = '<i class="bx bx-cart"></i>';
-$button_text = esc_html__('Add to cart', 'basetheme');
+$button_text = esc_html__('Add to cart', 'fluxor');
 
 // Condizione 1: Prodotto variabile
 if ($product_type === 'variable') {
     $button_icon = '<i class="bx bx-slider-alt"></i>';
-    $button_text = esc_html__('Choose options', 'basetheme');
+    $button_text = esc_html__('Choose options', 'fluxor');
 }
 
 // Condizione 2: Prodotto esaurito
 if (!$in_stock) {
     $button_icon = '<i class="bx bx-block"></i>';
-    $button_text = esc_html__('Not available', 'basetheme');
+    $button_text = esc_html__('Not available', 'fluxor');
     $args['class'] .= ' disabled';
 }
 
 // Condizione 3: Prodotto in offerta
 if ($product->is_on_sale() && $in_stock && $product_type === 'simple') {
     $button_icon = '<i class="bx bx-purchase-tag"></i>';
-    $button_text = esc_html__('Buy now', 'basetheme');
+    $button_text = esc_html__('Buy now', 'fluxor');
 }
 
 // Costruisci link

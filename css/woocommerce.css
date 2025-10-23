@@ -604,6 +604,18 @@ ul.products {
   border-radius: 0px;
 }
 
+.comment-respond input[type=text], .comment-respond input[type=email]{
+  border: 1px solid var(--color-grey-light);
+  border-radius: 0px;
+}
+
+.comment-form-author, .comment-form-email{
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+}
+
 .stars{
   padding-top: 10px;
 }

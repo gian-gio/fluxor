@@ -1914,15 +1914,15 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   width: 100%;
   height: 45px;
   padding: 10px;
-  margin:3px 0;
+  margin:3px 0 0 0;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 0px;
   outline: none;
 }
 
 /* Pulsante di login */
 #custom_login_form input[type="submit"] {
-  background:var(--color-secondary);
+  background:var(--color-primary);
   color: white;
   border: none;
   cursor: pointer;
@@ -1930,12 +1930,10 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: background 0.3s ease;
-  margin-top: 30px;
+  margin-top:30px;
+  font-weight: var(--font-semi-bold);
 }
 
-#custom_login_form input[type="submit"]:hover {
-  background:var(--color-secondary-light);
-}
 
 /* Checkbox "Ricordami" */
 #custom_login_form label {

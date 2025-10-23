@@ -1,19 +1,18 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-25 13:48+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2025-10-23 09:55+0000\n"
+"PO-Revision-Date: 2025-10-23 10:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: Italiano\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.2.27\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.2.27\n"
 "X-Domain: fluxor"
 
 #: index.php:62
@@ -33,6 +32,10 @@ msgid ""
 "A flexible and lightweight WordPress theme for blogs, portfolios, business "
 "sites, and WooCommerce stores. Fully responsive and easy to customize."
 msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:30
+msgid "Add to cart"
+msgstr "Aggiungi al carrello"
 
 #: single.php:36
 msgid "Back"
@@ -97,6 +100,14 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
+#: woocommerce/single-product.php:58
+msgid "Brands:"
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:48
+msgid "Buy now"
+msgstr ""
+
 #: footer.php:71 footer.php:73
 msgid "Chat with us on WhatsApp"
 msgstr ""
@@ -105,6 +116,10 @@ msgstr ""
 #: woocommerce/page-checkout.php:1
 msgid "Checkout Page"
 msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:35
+msgid "Choose options"
+msgstr "Scegli le opzioni"
 
 #: functions/customizer.php:81
 msgid "Configure the WhatsApp button settings."
@@ -117,10 +132,6 @@ msgstr ""
 
 #: functions.php:172
 msgid "Default Logo"
-msgstr ""
-
-#: woocommerce/single-product.php:31
-msgid "Description"
 msgstr ""
 
 #: functions/customizer.php:99
@@ -231,13 +242,21 @@ msgstr ""
 msgid "My Account Page"
 msgstr ""
 
-#: woocommerce/archive-product.php:106
+#: woocommerce/archive-product.php:111
 msgid "Nessun prodotto trovato"
 msgstr ""
 
 #: index.php:73
 msgid "No articles found: "
 msgstr ""
+
+#: woocommerce/content-product.php:22 woocommerce/loop/add-to-cart.php:41
+msgid "Not available"
+msgstr "Non disponibile"
+
+#: woocommerce/content-product.php:18
+msgid "On sale"
+msgstr "In offerta"
 
 #: 404.php:9
 msgid "Oops! That page can't be found."

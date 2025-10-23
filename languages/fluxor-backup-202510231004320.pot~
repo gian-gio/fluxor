@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 10:04+0000\n"
+"POT-Creation-Date: 2025-10-23 09:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -32,10 +32,6 @@ msgstr ""
 msgid ""
 "A flexible and lightweight WordPress theme for blogs, portfolios, business "
 "sites, and WooCommerce stores. Fully responsive and easy to customize."
-msgstr ""
-
-#: woocommerce/loop/add-to-cart.php:30
-msgid "Add to cart"
 msgstr ""
 
 #: single.php:36
@@ -105,10 +101,6 @@ msgstr ""
 msgid "Brands:"
 msgstr ""
 
-#: woocommerce/loop/add-to-cart.php:48
-msgid "Buy now"
-msgstr ""
-
 #: footer.php:71 footer.php:73
 msgid "Chat with us on WhatsApp"
 msgstr ""
@@ -116,10 +108,6 @@ msgstr ""
 #. Name of the template
 #: woocommerce/page-checkout.php:1
 msgid "Checkout Page"
-msgstr ""
-
-#: woocommerce/loop/add-to-cart.php:35
-msgid "Choose options"
 msgstr ""
 
 #: functions/customizer.php:81
@@ -216,6 +204,10 @@ msgstr ""
 msgid "Home Template"
 msgstr ""
 
+#: woocommerce/content-product.php:18
+msgid "In offerta"
+msgstr ""
+
 #. Name of the template
 #: page-template/landing-page-template.php:1
 msgid "Landing Page Template"
@@ -251,12 +243,8 @@ msgstr ""
 msgid "No articles found: "
 msgstr ""
 
-#: woocommerce/content-product.php:22 woocommerce/loop/add-to-cart.php:41
-msgid "Not available"
-msgstr ""
-
-#: woocommerce/content-product.php:18
-msgid "On sale"
+#: woocommerce/content-product.php:22
+msgid "Non disponibile"
 msgstr ""
 
 #: 404.php:9
