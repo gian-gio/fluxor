@@ -245,6 +245,86 @@ add_action('admin_init', 'fluxor_admin_page_block');
   add_action( 'tgmpa_register', 'fluxor_register_required_plugins' );
 
 
+// =============================================
+// Funzione per visualizzare le categorie annidate
+// =============================================
+if ( ! function_exists( 'fluxor_display_nested_product_categories' ) ) {
+    function fluxor_display_nested_product_categories( $parent_id = 0, $level = 1, $max_depth = 3 ) {
+        $args = array(
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => true,
+            'parent'     => $parent_id,
+        );
+
+        $categories = get_terms( $args );
+        if ( empty( $categories ) || is_wp_error( $categories ) ) {
+            return;
+        }
+
+        $ul_class = 'product-categories level-' . intval( $level );
+        if ( $level > 1 ) {
+            $ul_class .= ' subcategories';
+        }
+
+        echo '<ul class="' . esc_attr( $ul_class ) . '">';
+
+        foreach ( $categories as $category ) {
+            $has_children = false;
+            if ( $level < $max_depth ) {
+                $children = get_terms( array(
+                    'taxonomy'   => 'product_cat',
+                    'hide_empty' => true,
+                    'parent'     => $category->term_id,
+                    'fields'     => 'ids',
+                    'number'     => 1,
+                ) );
+                $has_children = ! empty( $children );
+            }
+
+            echo '<li class="' . ( $has_children ? 'has-children' : '' ) . '">';
+
+            $submenu_id = 'pcat-sub-' . intval( $category->term_id );
+
+            $link_attrs = $has_children && $level === 2
+                ? ' href="' . esc_url( get_term_link( $category ) ) . '" class="toggle-link" data-toggle="true" aria-controls="' . esc_attr( $submenu_id ) . '" aria-expanded="false"'
+                : ' href="' . esc_url( get_term_link( $category ) ) . '"';
+
+            echo '<a' . $link_attrs . '>';
+            echo '<span class="cat-name">' . esc_html( $category->name ) . '</span>';
+
+            if ( $has_children && $level === 2 ) {
+                echo '<i class="bx bx-chevron-down"></i>';
+            }
+
+            echo '</a>';
+
+            if ( $has_children ) {
+                if ( $level === 2 ) {
+                    ob_start();
+                    fluxor_display_nested_product_categories( $category->term_id, $level + 1, $max_depth );
+                    $nested = ob_get_clean();
+                    echo '<div id="' . esc_attr( $submenu_id ) . '" class="submenu-container" style="display:none;">' . $nested . '</div>';
+                } else {
+                    fluxor_display_nested_product_categories( $category->term_id, $level + 1, $max_depth );
+                }
+            }
+
+            echo '</li>';
+        }
+
+        echo '</ul>';
+    }
+}
+
+
+// Disabilita il nuovo header del loop di WooCommerce (titolo e descrizione automatica)
+remove_action( 'woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10 );
+
+// Disabilita completamente la sidebar di WooCommerce
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+
+
 
 
 
