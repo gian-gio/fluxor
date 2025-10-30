@@ -1,0 +1,319 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fluxor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-23 10:04+0000\n"
+"PO-Revision-Date: 2025-10-30 11:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: Italiano\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.2.27\n"
+"X-Domain: fluxor"
+
+#: index.php:62
+msgid "&laquo;"
+msgstr ""
+
+#: index.php:63
+msgid "&raquo;"
+msgstr ""
+
+#: 404.php:10
+msgid "404 Error"
+msgstr ""
+
+#. Description of the theme
+msgid ""
+"A flexible and lightweight WordPress theme for blogs, portfolios, business "
+"sites, and WooCommerce stores. Fully responsive and easy to customize."
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:30
+msgid "Add to cart"
+msgstr ""
+
+#: single.php:36
+msgid "Back"
+msgstr ""
+
+#: functions/patterns.php:906
+msgctxt "Block pattern description"
+msgid " Three-column contact block with text and link icons"
+msgstr ""
+
+#: functions/patterns.php:577
+msgctxt "Block pattern description"
+msgid "A testimonials section with, photo, name, text and valuation."
+msgstr ""
+
+#: functions/patterns.php:259
+msgctxt "Block pattern description"
+msgid ""
+"Four-column box ideal for the \"our team\" section, each column includes the "
+"profile image, name, job title, short description, social link and detail "
+"button."
+msgstr ""
+
+#: functions/patterns.php:8
+msgctxt "Block pattern description"
+msgid "Hero section with button, title and description."
+msgstr ""
+
+#: functions/patterns.php:63
+msgctxt "Block pattern description"
+msgid "Last three article blog"
+msgstr ""
+
+#: functions/patterns.php:542
+msgctxt "Block pattern description"
+msgid "Logo slider with destination url."
+msgstr ""
+
+#: functions/patterns.php:484
+msgctxt "Block pattern description"
+msgid "Media text with 2 blocks with alternating image text positions."
+msgstr ""
+
+#: functions/patterns.php:784
+msgctxt "Block pattern description"
+msgid "Two column accordion block"
+msgstr ""
+
+#: functions/patterns.php:119
+msgctxt "Block pattern description"
+msgid ""
+"Two-column icon block, on the left column there is the title, on the right "
+"column there are 4 blocks with icons and text"
+msgstr ""
+
+#: functions/patterns.php:749
+msgctxt "Block pattern description"
+msgid "YouTube video block with title"
+msgstr ""
+
+#: index.php:20
+msgid "Blog"
+msgstr ""
+
+#: woocommerce/single-product.php:58
+msgid "Brands:"
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:48
+msgid "Buy now"
+msgstr ""
+
+#: footer.php:71 footer.php:73
+msgid "Chat with us on WhatsApp"
+msgstr ""
+
+#. Name of the template
+#: woocommerce/page-checkout.php:1
+msgid "Checkout Page"
+msgstr ""
+
+#: woocommerce/loop/add-to-cart.php:35
+msgid "Choose options"
+msgstr ""
+
+#: functions/customizer.php:81
+msgid "Configure the WhatsApp button settings."
+msgstr ""
+
+#. Name of the template
+#: woocommerce/page-cart.php:1
+msgid "Custom Cart Page"
+msgstr ""
+
+#: functions.php:172
+msgid "Default Logo"
+msgstr ""
+
+#: functions/customizer.php:99
+msgid "Enter your WhatsApp phone number (ex: 3912345678)."
+msgstr ""
+
+#. Name of the theme
+msgid "Fluxor"
+msgstr ""
+
+#: functions/patterns.php:783
+msgid "fluxor - Accordion"
+msgstr ""
+
+#: functions/patterns.php:905
+msgid "fluxor - Contact block"
+msgstr ""
+
+#: functions/patterns.php:7
+msgid "fluxor - Hero Cover"
+msgstr ""
+
+#: functions/patterns.php:118
+msgid "fluxor - Icon Box"
+msgstr ""
+
+#: functions/patterns.php:62
+msgid "fluxor - Last three article"
+msgstr ""
+
+#: functions/patterns.php:541
+msgid "fluxor - Logo Slider"
+msgstr ""
+
+#: functions/patterns.php:483
+msgid "fluxor - Media Text"
+msgstr ""
+
+#: functions/patterns.php:258
+msgid "fluxor - Our Team"
+msgstr ""
+
+#: functions/patterns.php:576
+msgid "fluxor - Testimonials"
+msgstr ""
+
+#: functions/patterns.php:748
+msgid "fluxor - Video block"
+msgstr ""
+
+#: functions/customizer.php:36
+msgid "Font Weight (ex. 300,400,700 )"
+msgstr ""
+
+#: functions.php:186
+msgid "Footer Logo"
+msgstr ""
+
+#: functions.php:44
+msgid "Footer Menu"
+msgstr ""
+
+#. Author of the theme
+msgid "Gianluca Giuliano"
+msgstr ""
+
+#: functions/customizer.php:50
+msgid "Google Font Body (ex. Open Sans )"
+msgstr ""
+
+#: functions/customizer.php:22
+msgid "Google Font Headings (ex. Open Sans )"
+msgstr ""
+
+#: functions.php:42
+msgid "Header"
+msgstr ""
+
+#. Name of the template
+#: page-template/home-template.php:1
+msgid "Home Template"
+msgstr ""
+
+#. Name of the template
+#: page-template/landing-page-template.php:1
+msgid "Landing Page Template"
+msgstr ""
+
+#. Name of the template
+#: page-template/page-login.php:2
+msgid "Login"
+msgstr ""
+
+#: functions.php:164
+msgid "Logo"
+msgstr ""
+
+#: functions.php:166
+msgid "Manage the site logo and additional logo options."
+msgstr ""
+
+#: functions.php:125
+msgid "Mostra icona carrello nel menu"
+msgstr ""
+
+#. Name of the template
+#: woocommerce/page-my-account.php:2
+msgid "My Account Page"
+msgstr ""
+
+#: woocommerce/archive-product.php:111
+msgid "Nessun prodotto trovato"
+msgstr ""
+
+#: index.php:73
+msgid "No articles found: "
+msgstr ""
+
+#: woocommerce/content-product.php:22 woocommerce/loop/add-to-cart.php:41
+msgid "Not available"
+msgstr ""
+
+#: woocommerce/content-product.php:18
+msgid "On sale"
+msgstr ""
+
+#: 404.php:9
+msgid "Oops! That page can't be found."
+msgstr ""
+
+#. Name of the template
+#: page-template/page-reserved.php:2
+msgid "Pagina Riservata"
+msgstr ""
+
+#: functions.php:43
+msgid "Quick Menu"
+msgstr ""
+
+#: index.php:12
+msgid "Results for: "
+msgstr ""
+
+#: header.php:21
+msgid "Search in the site"
+msgstr ""
+
+#: header.php:23
+msgid "search..."
+msgstr ""
+
+#: page.php:48 single.php:30 page-template/home-template.php:29
+#: page-template/landing-page-template.php:31
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+
+#: 404.php:11
+msgid ""
+"The page you are trying to reach does not exist, or has been moved. Please "
+"use the menus or the search box to find what you are looking for."
+msgstr ""
+
+#: functions/customizer.php:10
+msgid "Typography"
+msgstr ""
+
+#: functions.php:173
+msgid "Upload a default logo to be used in the header site."
+msgstr ""
+
+#: functions.php:187
+msgid "Upload a logo to be used in the footer."
+msgstr ""
+
+#: functions/customizer.php:95
+msgid "WhatsApp Phone Number"
+msgstr ""
+
+#: functions/customizer.php:80
+msgid "WhatsApp Settings"
+msgstr ""
+
+#: functions.php:111
+msgid "WooCommerce Settings"
+msgstr ""

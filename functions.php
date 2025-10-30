@@ -133,6 +133,19 @@ function fluxor_sanitize_checkbox($checked) {
   return (isset($checked) && $checked === true) ? true : false;
 }
 
+// Evita che WooCommerce cerchi di forzare l’allineamento dei template personalizzati
+add_filter( 'woocommerce_defer_template_part_sync', '__return_true' );
+
+
+
+//Imposta il numero di prodotti per pagina nello shop
+
+add_filter( 'loop_shop_per_page', 'fluxor_products_per_page', 20 );
+
+function fluxor_products_per_page( $cols ) {
+    // Imposta i prodotti per pagina
+    return 12;
+}
 
 
 // Load translation

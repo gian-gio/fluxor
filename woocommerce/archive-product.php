@@ -118,18 +118,32 @@
                 fluxor_display_nested_product_categories(0, 1, 3);
                 ?>
             </div>
+            
+            <div class="products-list">
+                <?php if ( woocommerce_product_loop() ) : ?>
 
-            <?php if (woocommerce_product_loop()) : ?>
-                <?php woocommerce_product_loop_start(); ?>
-                    <?php while (have_posts()) : the_post(); ?>
-                        <?php wc_get_template_part('content', 'product'); ?>
-                    <?php endwhile; ?>
-                <?php woocommerce_product_loop_end(); ?>
-            <?php else : ?>
-                <p><?php esc_html_e('Nessun prodotto trovato', 'fluxor'); ?></p>
-            <?php endif; ?>
+                    <div class="products-order">
+                        <?php
+                        do_action( 'woocommerce_before_shop_loop' );
+                        ?>
+                    </div>
 
+                    <?php woocommerce_product_loop_start(); ?>
 
+                        <?php while ( have_posts() ) : the_post(); ?>
+                            <?php wc_get_template_part( 'content', 'product' ); ?>
+                        <?php endwhile; ?>
+
+                    <?php woocommerce_product_loop_end(); ?>
+
+                    <div class="products-pagination">
+                        <?php do_action( 'woocommerce_after_shop_loop' ); ?>
+                    </div>
+
+                <?php else : ?>
+                        <p><?php esc_html_e( 'Nessun prodotto trovato', 'fluxor' ); ?></p>
+                <?php endif; ?>
+            </div>
             
         </div>
     </div>
