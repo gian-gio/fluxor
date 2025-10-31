@@ -206,6 +206,88 @@ function fluxor_customize_logo_section($wp_customize) {
 add_action('customize_register', 'fluxor_customize_logo_section');
 
 
+/**
+ * Personalizzazioni pagina login (logo dinamico + styling)
+ */
+if ( ! function_exists( 'fluxor_custom_login_style' ) ) {
+    function fluxor_custom_login_style() {
+        $custom_logo_id = get_theme_mod('custom_logo');
+        $logo_url = $custom_logo_id ? wp_get_attachment_image_url($custom_logo_id, 'full') : '';
+
+        $color_primary = '#0073aa';
+        $color_default = '#1a1a1a';
+        $color_background = '#EEEEEE';
+        ?>
+        <style type="text/css">
+            body.login {
+                background: <?php echo esc_html($color_background); ?>;
+                font-family: 'Inter', 'Roboto', sans-serif;
+            }
+
+            body.login div#login h1 a {
+                <?php if ( $logo_url ) : ?>
+                background-image: url('<?php echo esc_url( $logo_url ); ?>');
+                <?php endif; ?>
+                background-size: contain;
+                background-repeat: no-repeat;
+                width: 220px;
+                height: 110px;
+                padding-bottom: 10px;
+            }
+
+            body.login form {
+                background: #fff;
+                border: 1px solid #DDD;
+                box-shadow: none;
+            }
+
+            body.login form input[type=text],body.login form input[type=password]{
+                border:1px solid #DDD;
+                border-radius:0px;
+                height:40px;
+            }
+
+            body.login form select{
+                border:1px solid #DDD;
+                border-radius:0px;
+                height:40px;
+            }
+
+            body.login .language-switcher input[type=submit]{
+                border:0px;
+                border-radius:0px;
+                height:40px;
+            }
+
+            body.login form input[type=submit]{
+                border:0px;
+                border-radius:0px;
+                height:30px;
+                padding:0 18px!important;
+            }
+        </style>
+        <?php
+    }
+    add_action( 'login_enqueue_scripts', 'fluxor_custom_login_style' );
+}
+
+if ( ! function_exists( 'fluxor_login_logo_url' ) ) {
+    function fluxor_login_logo_url() {
+        return home_url('/');
+    }
+    add_filter( 'login_headerurl', 'fluxor_login_logo_url' );
+}
+
+if ( ! function_exists( 'fluxor_login_logo_title' ) ) {
+    function fluxor_login_logo_title() {
+        return get_bloginfo('name');
+    }
+    add_filter( 'login_headertitle', 'fluxor_login_logo_title' );
+}
+
+
+
+
 /*  Enqueue javascript
 /* ------------------------------------ */
   function fluxor_scripts() {
@@ -286,6 +368,7 @@ function blocca_nuovi_admin( $user_id ) {
     }
 
 }
+
 
 
 /* Include additional customizer functions */
