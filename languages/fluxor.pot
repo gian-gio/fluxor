@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 10:04+0000\n"
+"POT-Creation-Date: 2025-11-07 10:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -32,10 +32,6 @@ msgstr ""
 msgid ""
 "A flexible and lightweight WordPress theme for blogs, portfolios, business "
 "sites, and WooCommerce stores. Fully responsive and easy to customize."
-msgstr ""
-
-#: woocommerce/loop/add-to-cart.php:30
-msgid "Add to cart"
 msgstr ""
 
 #: single.php:36
@@ -105,10 +101,6 @@ msgstr ""
 msgid "Brands:"
 msgstr ""
 
-#: woocommerce/loop/add-to-cart.php:48
-msgid "Buy now"
-msgstr ""
-
 #: footer.php:71 footer.php:73
 msgid "Chat with us on WhatsApp"
 msgstr ""
@@ -116,10 +108,6 @@ msgstr ""
 #. Name of the template
 #: woocommerce/page-checkout.php:1
 msgid "Checkout Page"
-msgstr ""
-
-#: woocommerce/loop/add-to-cart.php:35
-msgid "Choose options"
 msgstr ""
 
 #: functions/customizer.php:81
@@ -131,7 +119,7 @@ msgstr ""
 msgid "Custom Cart Page"
 msgstr ""
 
-#: functions.php:172
+#: functions.php:185
 msgid "Default Logo"
 msgstr ""
 
@@ -187,7 +175,7 @@ msgstr ""
 msgid "Font Weight (ex. 300,400,700 )"
 msgstr ""
 
-#: functions.php:186
+#: functions.php:199
 msgid "Footer Logo"
 msgstr ""
 
@@ -226,11 +214,11 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: functions.php:164
+#: functions.php:177
 msgid "Logo"
 msgstr ""
 
-#: functions.php:166
+#: functions.php:179
 msgid "Manage the site logo and additional logo options."
 msgstr ""
 
@@ -243,7 +231,7 @@ msgstr ""
 msgid "My Account Page"
 msgstr ""
 
-#: woocommerce/archive-product.php:111
+#: woocommerce/archive-product.php:144
 msgid "Nessun prodotto trovato"
 msgstr ""
 
@@ -251,7 +239,7 @@ msgstr ""
 msgid "No articles found: "
 msgstr ""
 
-#: woocommerce/content-product.php:22 woocommerce/loop/add-to-cart.php:41
+#: woocommerce/content-product.php:22
 msgid "Not available"
 msgstr ""
 
@@ -299,11 +287,11 @@ msgstr ""
 msgid "Typography"
 msgstr ""
 
-#: functions.php:173
+#: functions.php:186
 msgid "Upload a default logo to be used in the header site."
 msgstr ""
 
-#: functions.php:187
+#: functions.php:200
 msgid "Upload a logo to be used in the footer."
 msgstr ""
 

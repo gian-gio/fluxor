@@ -322,7 +322,7 @@ function fluxor_styles() {
   
   // Load CSS files
 	wp_enqueue_style( 'boxicons-style', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
-	wp_enqueue_style( 'lineawesome-style', 'https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css');
+	wp_enqueue_style( 'lineawesome-style', 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css');
 	wp_enqueue_style( 'splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css');
 	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri().'/css/woocommerce.css');
 	wp_enqueue_style( 'simple-style', get_template_directory_uri().'/style.css');

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-23 10:04+0000\n"
-"PO-Revision-Date: 2025-10-30 11:46+0000\n"
+"PO-Revision-Date: 2025-11-07 10:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: woocommerce/loop/add-to-cart.php:30
 msgid "Add to cart"
-msgstr ""
+msgstr "Aggiungi al carrello"
 
 #: single.php:36
 msgid "Back"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: woocommerce/loop/add-to-cart.php:48
 msgid "Buy now"
-msgstr ""
+msgstr "Acquista ora"
 
 #: footer.php:71 footer.php:73
 msgid "Chat with us on WhatsApp"
@@ -119,7 +119,7 @@ msgstr ""
 
 #: woocommerce/loop/add-to-cart.php:35
 msgid "Choose options"
-msgstr ""
+msgstr "Seleziona opzioni"
 
 #: functions/customizer.php:81
 msgid "Configure the WhatsApp button settings."
