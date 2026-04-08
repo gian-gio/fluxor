@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Pagina Riservata
+Template Name: Page Reserved
 */
 
 if (!is_user_logged_in()) {

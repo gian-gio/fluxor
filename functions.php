@@ -33,6 +33,90 @@ function fluxor_setup() {
     // Custom image sizes
     add_image_size('image-small', 350, 270, true);
     add_image_size('image-big', 1400, 900, true);
+    add_filter('big_image_size_threshold', function() { return 2560; });
+    add_filter('intermediate_image_sizes_advanced', function($sizes) {
+        unset($sizes['medium_large']); 
+        unset($sizes['1536x1536']);
+        unset($sizes['2048x2048']);
+        return $sizes;
+    });
+
+    // Impedisce il lazy load sulla primissima immagine della pagina (solitamente la più importante)
+    add_filter( 'wp_get_attachment_image_attributes', function( $attr, $attachment, $size ) {
+        static $count = 0;
+        if ( ! is_admin() && $count === 0 ) {
+            $attr['loading'] = 'eager'; // Carica immediatamente
+            $attr['fetchpriority'] = 'high'; // Priorità massima
+        }
+        $count++;
+        return $attr;
+    }, 10, 3 );
+
+    //Decodifica immagini in modo asincrono
+    add_filter( 'wp_get_attachment_image_attributes', function( $attr ) {
+    if ( ! is_admin() ) {
+        $attr['decoding'] = 'async';
+    }
+    return $attr;
+    }, 10 );
+
+    /**
+     * Limita il peso massimo dei file caricati (es. 2MB)
+     */
+    add_filter( 'wp_handle_upload_prefilter', 'fluxor_limit_upload_size' );
+    function fluxor_limit_upload_size( $file ) {
+        $size = $file['size']; // Dimensione in byte
+        $limit = 2 * 1024 * 1024; // 2 Megabyte
+        $limit_text = '2MB';
+
+        if ( $size > $limit ) {
+            $file['error'] = "The file is too large! The maximum allowed size is $limit_text. Optimize it before uploading.";
+        }
+
+        return $file;
+    }
+
+    // Forza la soglia massima a 2560px (standard 4K)
+    add_filter( 'big_image_size_threshold', function() {
+        return 2560; 
+    });
+
+    /**
+     * Riduce la qualità di compressione per risparmiare spazio
+     */
+    add_filter( 'jpeg_quality', function($quality) {
+        return 75;
+    });
+
+    /**
+     * Forza il ridimensionamento fisico dell'originale a 2000px.
+     * Questo cancella il file gigante e tiene solo una versione ragionevole.
+     */
+    add_filter( 'wp_handle_upload', function( $upload ) {
+        if ( $upload['type'] != 'image/jpeg' && $upload['type'] != 'image/png' ) return $upload;
+
+        $image = wp_get_image_editor( $upload['file'] );
+        if ( ! is_wp_error( $image ) ) {
+            $size = $image->get_size();
+            if ( $size['width'] > 2000 || $size['height'] > 2000 ) {
+                $image->resize( 2000, 2000, false );
+                $image->save( $upload['file'] ); // Sovrascrive l'originale!
+            }
+        }
+        return $upload;
+    });
+
+    /**
+     * Aggiunge lazy load ai banner di WP Bannerize Pro
+     */
+    add_filter( 'wp_bannerize_pro_banner_html', function( $html ) {
+        // Se il banner non è il primissimo in alto, aggiungiamo lazy load
+        if ( strpos( $html, 'loading=' ) === false ) {
+            $html = str_replace( '<img ', '<img loading="lazy" ', $html );
+        }
+        return $html;
+    });
+
 
     // Enable page excerpts
     add_post_type_support('page', 'excerpt');
@@ -55,6 +139,55 @@ function fluxor_setup() {
 }
 
 add_action('after_setup_theme', 'fluxor_setup');
+
+
+
+/**
+ * Aggiunge i Dati Strutturati JSON-LD alla Home Page per migliorare la SEO Locale
+ */
+function schema_json_ld_fluxor() {
+    if ( is_front_page() ) {
+        $payload = array(
+            "@context" => "https://schema.org",
+            "@type" => "ProfessionalService",
+            "name" => "Gianluca Giuliano - Web Design & Development",
+            "image" => "https://gianlucagiuliano.it/wp-content/uploads/2025/02/avatar.webp",
+            "@id" => "https://gianlucagiuliano.it",
+            "url" => "https://gianlucagiuliano.it",
+            "telephone" => "",
+            "priceRange" => "€€",
+            "address" => array(
+                "@type" => "PostalAddress",
+                "streetAddress" => " ", 
+                "addressLocality" => "Marano di Napoli",
+                "addressRegion" => "NA",
+                "postalCode" => "80016",
+                "addressCountry" => "IT"
+            ),
+            "geo" => array(
+                "@type" => "GeoCoordinates",
+                "latitude" => 40.9022,
+                "longitude" => 14.1925
+            ),
+            "openingHoursSpecification" => array(
+                "@type" => "OpeningHoursSpecification",
+                "dayOfWeek" => array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
+                "opens" => "09:00",
+                "closes" => "19:00"
+            ),
+            "sameAs" => array(
+                "https://www.linkedin.com/in/gianluca-giuliano", 
+                "https://www.instagram.com/gianlucagiuliano_/",
+				"https://codepen.io/gianluca-giuliano"
+            ),
+            "description" => "Esperto Web Designer e Sviluppatore WordPress Custom a Napoli. Oltre 15 anni di esperienza e 200+ progetti realizzati con focus su performance e UX."
+        );
+
+        echo "\n\n";
+        echo '<script type="application/ld+json">' . json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    }
+}
+add_action('wp_head', 'schema_json_ld_fluxor');
 
 
 
@@ -162,8 +295,8 @@ function fluxor_custom_sidebar() {
       'id'            => 'custom-sidebar',
       'before_widget' => '<div class="widget">',
       'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widget-title">',
-      'after_title'   => '</h2>',
+      'before_title'  => '<h3 class="widget-title">',
+      'after_title'   => '</h3>',
   ) );
 }
 add_action( 'widgets_init', 'fluxor_custom_sidebar' );
@@ -370,13 +503,44 @@ function blocca_nuovi_admin( $user_id ) {
 }
 
 
+/**
+ * OTTIMIZZAZIONE PERFORMANCE EXTRA
+ * Rimuove script inutili (Emoji) e ottimizza il caricamento dei font
+ */
+function fluxor_extra_optimization() {
+    // Rimuove le emoji che caricano JS e CSS su ogni pagina
+    remove_action('wp_head', 'print_emoji_detection_script', 7);
+    remove_action('wp_print_styles', 'print_emoji_styles');
+    remove_action('admin_print_scripts', 'print_emoji_detection_script');
+    remove_action('admin_print_styles', 'print_emoji_styles');
+    remove_filter('the_content_feed', 'wp_staticize_emoji');
+    remove_filter('comment_text_rss', 'wp_staticize_emoji');
+    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+    
+    // Rimuove il link agli Shortlink (inutile per la SEO e rallenta l'head)
+    remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+    
+    // Rimuove la versione di WordPress per sicurezza e pulizia
+    remove_action('wp_head', 'wp_generator');
+}
+add_action('init', 'fluxor_extra_optimization');
+
+/**
+ * Caricamento dei Font con "Swap" per evitare testi invisibili durante il caricamento
+ */
+add_filter('style_loader_tag', 'fluxor_add_font_display_swap', 10, 2);
+function fluxor_add_font_display_swap($tag, $handle) {
+    if ('fluxor-google-font' === $handle || 'fluxor-google-font-body' === $handle) {
+        return str_replace('href', 'display=swap&href', $tag);
+    }
+    return $tag;
+}
+
+
 
 /* Include additional customizer functions */
 if (file_exists(get_template_directory() . '/functions/customizer.php')) {
   require_once(get_template_directory() . '/functions/customizer.php');
 }
-
-
-?>
 
 

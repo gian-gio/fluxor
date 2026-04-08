@@ -1,4 +1,11 @@
-  <?php get_header(); // insert header.php inclusion  ?>
+  <?php 
+  
+      /*
+    Template Name: No Head Page
+    */
+
+  
+  get_header(); // insert header.php inclusion  ?>
 
 
 
@@ -14,17 +21,6 @@
     $image_url = $image_attributes ? $image_attributes[0] : ''; // fallback a stringa vuota
     //?>
 
-
-    <div class="main__cover fade-in" style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)),url(<?php echo esc_url($image_url); ?>) center center; background-size:cover;">
-      <div class="main__cover--content">
-          <div class="grid--xl">
-            <div class="col-xl-100">
-              <h1 class="fade-in"><?php the_title(); ?></h1>
-              <h2 class="fade-in"><?php echo get_the_excerpt();?></h2>
-            </div>
-          </div>
-      </div>
-    </div>
 
 
 

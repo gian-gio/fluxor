@@ -247,7 +247,7 @@ body.scroll-down.home .container-header{
     position: relative;
     display: inline-block;
     height: 30px;
-    padding-top: 12px;
+    padding-top: 15px;
     padding-right: 15px;
   }
 
@@ -499,6 +499,7 @@ body.scroll-down.home .container-header{
   
   .button a:hover{
     background: var(--color-primary-dark);
+    color: var(--color-white);
     cursor: pointer;
     transition: all .3s cubic-bezier(.215, .61, .355, 1);
   }
@@ -512,8 +513,9 @@ body.scroll-down.home .container-header{
   .icon-facebook, 
   .icon-github, 
   .icon-tiktok,
+  .icon-x,
   .icon-youtube{
-    padding-right: 30px!important;
+    padding-right: 20px!important;
   }
  
 
@@ -523,19 +525,19 @@ body.scroll-down.home .container-header{
 .icon-facebook a, 
 .icon-github a, 
 .icon-tiktok a,
+.icon-x a,
 .icon-youtube a {
   text-indent: -9999px;
   display:block;
   position: relative;
-  top:-2px;
 }
 
 
 .icon-dribbble a:before{
   background: url(icons/logo-dribbble.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -546,8 +548,8 @@ body.scroll-down.home .container-header{
 .icon-instagram a:before{
   background: url(icons/logo-instagram.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -560,8 +562,8 @@ body.scroll-down.home .container-header{
 .icon-linkedin a:before{
   background: url(icons/logo-linkedin.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -572,8 +574,8 @@ body.scroll-down.home .container-header{
 .icon-facebook a:before{
   background: url(icons/logo-facebook.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -584,8 +586,8 @@ body.scroll-down.home .container-header{
 .icon-github a:before{
   background: url(icons/logo-github.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -596,8 +598,20 @@ body.scroll-down.home .container-header{
 .icon-tiktok a:before{
   background: url(icons/logo-tiktok.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
+  text-indent: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-size: 100%;
+  filter: invert(1);
+}
+.icon-x a:before{
+  background: url(icons/logo-x.svg) no-repeat center center;
+  content: " ";
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -608,8 +622,8 @@ body.scroll-down.home .container-header{
 .icon-youtube a:before{
   background: url(icons/logo-youtube.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -677,25 +691,21 @@ body.scroll-down.home .container-header{
 }
 
 .icon-search{
-  padding:0 30px!important;
+  padding:0 20px 0 10px!important;
 }
-
-.icon-search a:before{
-  background: url(icons/search-outline.svg) no-repeat center center;
-}
-
 
 .icon-search a{
   text-indent: -9999px;
   display:block;
   position: relative;
-  top:-2px;
+  top:0;
 }
 
 .icon-search a:before{
+  background: url(icons/search-outline.svg) no-repeat center center;
   content: " ";
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   text-indent: 0;
   position: absolute;
   left: 50%;
@@ -720,9 +730,9 @@ body.scroll-down.home .container-header{
 }
 
 .blog-list h1{
-  font-size: 3rem;
-  margin:60px 0;
-  line-height: 3rem;
+  font-size: 2.6rem;
+  margin:40px 0;
+  line-height: 2.8rem;
 }
 
 .blog-list h1 span{
@@ -733,27 +743,56 @@ body.scroll-down.home .container-header{
 
 .blog-list-content{
   width: 100%;
-  min-height: 510px;
+  min-height: 460px;
   margin-bottom: 30px;
+  color: var(--color-dark);
+}
 
+.blog-list-content a{
+  transition: all .3s cubic-bezier(.215, .61, .355, 1);
+  color: var(--color-dark);
+}
+
+
+
+.blog-list-content a:hover{
+  color: var(--color-dark);
+}
+.blog-list-content a:hover h3{
+  color: var(--color-dark);
+}
+.blog-list-content a:hover p{
+  color: var(--color-dark);
 }
 
 .blog-list-content h3{
-  font-size: 1.7rem;
-  line-height: 1.8rem;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
   margin:10px 0;
 }
 
 .blog-list-content p{
+  font-size: 0.9rem;
   margin-bottom: 10px;
+}
+
+.blog-list-content span{
+  font-size: 0.8rem;
+  font-style: oblique;
+}
+
+.blog-list-content span a{
+  color: var(--color-primary);
 }
 
 .blog-list-content img{
   width: 100%;
-  height: 300px;
+  height: 280px;
   object-fit: cover;
   object-position: top center;
 }
+
+
 
 
 
@@ -764,15 +803,18 @@ body.scroll-down.home .container-header{
   width: 100%;
 }
 
-.blog-single h1{
-  font-size: 3.5rem;
-  line-height: 3.5rem;
-  margin-bottom: 30px;
+.blog-single__spacer{
+  margin-top: 10vh;
 }
 
-.blog-single p{
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+.blog-single h1{
+  font-size: 2.6rem;
+  line-height:2.8rem;
+  margin-bottom: 20px;
+}
+
+.blog-single span{
+  font-size: 1.1rem;
 }
 
 .blog-single img{
@@ -780,7 +822,7 @@ body.scroll-down.home .container-header{
   height: 450px;
   object-fit: cover;
   object-position: center;
-  margin-bottom: 30px;
+  margin:15px 0 30px 0;
 }
 
 @media (max-width: 768px) {
@@ -803,31 +845,34 @@ body.scroll-down.home .container-header{
   min-height: 80vh;
 }
 
-.cover{
+.main__cover{
   width: 100%;
-  height: 300px;
+  height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
 }
 
-.cover__content{
+.main__cover--content{
   width: 100%;
   color:var(--color-default);
 }
 
 
-.cover__content h1{
-  font-size: 3.5rem;
+.main__cover--content h1{
+  font-size: 2.2rem;
+  line-height: 2.4rem;
   margin-bottom: 8px;
 }
 
-.cover__content h2{
-  font-size: 1.4rem;
+.main__cover--content h2{
+  font-size: 1rem;
+  line-height: 1.2rem;
   font-weight: 400;
   margin: 0;
 }
+
 
 
 /* ! Error 404 page 
@@ -1057,10 +1102,12 @@ body.scroll-down.home .container-header{
   transition: background-color 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 2px;
+  transition: all .3s cubic-bezier(.215, .61, .355, 1);
 }
 
 .back-button:hover {
-  background-color:var(--color-secondary);
+  background-color:var(--color-secondary-light);
+  color: #fff;
 }
 
 
@@ -1285,6 +1332,8 @@ body.scroll-down.home .container-header{
 
 /* Images */
 .img-res{width:100%; height: auto;}
+.figure-res img{width:100%!important; height: auto;}
+.figure-res-a a img{width:100%!important; height: auto;}
 
 /* Typography */
 .text-center{text-align: center;}
@@ -1638,7 +1687,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
 /* -------------------------------------------------------------------------------- */
 
 .widget-area {
-  padding:30px 40px;
+  padding:30px;
   background-color:var(--color-white);
 }
 
@@ -1646,13 +1695,14 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   margin-bottom: 20px;
 }
 
-.widget h2 {
-  font-size: 1.6rem;
+.widget h3 {
+  font-size: 1.3rem;
+  line-height: 1.5rem;
   margin-bottom: 10px;
 }
 
 .widget li{
-  padding:0 0  10px 10px;
+  padding:0 0 10px 10px;
   font-size: 0.9rem;
 }
 

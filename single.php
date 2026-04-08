@@ -1,6 +1,6 @@
 <?php get_header(); // insert header.php inclusion  ?>
 
-<div class="spacer"></div>
+<div class="blog-single__spacer"></div>
 
 <div class="grid--xl">
 
@@ -14,7 +14,7 @@
 
       <h1><?php the_title(); ?></h1>
 
-      <p><?php the_time('j M Y '); ?> - <?php the_category(' | '); ?>  <?php the_tags('(', ', ', ')'); ?></p>
+      <span><?php the_time('j M Y '); ?> - <?php the_category(' | '); ?>  <?php the_tags('(', ', ', ')'); ?></span>
 
       <?php the_post_thumbnail('image-big', array('class' => 'img-res','alt' => get_the_title())); ?>
 

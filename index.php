@@ -48,7 +48,7 @@
                               <p><?php echo $trimmed_excerpt; ?></p>
                           </a>
 
-                          <?php the_category(' | '); ?>
+                          <span><?php the_category(' | '); ?></span>
                       </div>
                   </div>
 
