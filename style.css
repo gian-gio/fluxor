@@ -83,6 +83,32 @@ img{height: auto;}
 
 a{text-decoration:none; color: var(--color-primary);}
 a:hover{color: var(--color-primary-dark);}
+a:active{color: var(--color-primary);}
+
+
+:focus {
+    outline: none;
+}
+
+
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+[tabindex]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* 2. We activate the border ONLY for the keyboard (Global Focus Ring) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-primary-dark) !important;
+    outline-offset: 4px !important;
+}
 
 
 
@@ -94,6 +120,41 @@ h3{font-size: 2rem;}
 h4{font-size: 1rem;}
 h5{font-size: 0.8rem;}
 h6{font-size: 0.6rem;}
+
+
+
+
+/* ! Skip to content
+-----------------------------------------------------*/
+.skip-link.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+    box-shadow: none;
+}
+
+.skip-link:focus {
+    background-color: var(--color-primary-dark);
+    clip: auto !important;
+    clip-path: none;
+    color: #fff;
+    display: block;
+    font-size: 1rem;
+    height: auto;
+    left: 15px;
+    top: 15px;
+    padding: 15px 23px;
+    text-decoration: none;
+    width: auto;
+    z-index: 100000; 
+}
 
 
 
@@ -132,6 +193,7 @@ body.scroll-down.home .container-header{
 .container-landing .container-header{
   display: none;
 }
+
 
 
 .header{
@@ -233,13 +295,39 @@ body.scroll-down.home .container-header{
     transition: all .3s cubic-bezier(.215, .61, .355, 1);
   }
   
-  .header__menu a:hover, .header__menu a:active{
+  .header__menu a:hover{
     color:var(--color-primary-dark);
   }
-  
-  .header__menu--active{
-    color:var(--color-primary-dark)!important;
+
+  .header__menu a:active{
+    color:var(--color-white);
   }
+  
+
+/* --- Menu Active --- */
+
+.header__menu li.current-menu-item > a,
+.header__menu li.current-menu-parent > a,
+.header__menu li.current-post-ancestor > a {
+    color: var(--color-primary) !important; 
+}
+
+.header__menu li.current-menu-item > a::before,
+.header__menu li.current-menu-parent > a::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 0px; /* increase the value to emphasize the link */
+    background-color: var(--color-primary);
+}
+
+.header__menu li ul li.current-menu-item a {
+    color: var(--color-primary) !important;
+    background: rgba(255, 255, 255, 0.05); 
+}
+
 
 
 
@@ -272,6 +360,21 @@ body.scroll-down.home .container-header{
   .header__hamburger{
     display: none;
   }
+
+
+
+/* 3. Submenu visibility management */
+.header__menu li:focus-within > ul {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+.header__menu li ul {
+    transition: opacity .3s ease;
+}
+
   
 
   @media (max-width: 768px) {
@@ -362,6 +465,8 @@ body.scroll-down.home .container-header{
       border-bottom:none;
       padding: 0 0 15px 0;
     }
+
+
 
   
   
@@ -638,7 +743,9 @@ body.scroll-down.home .container-header{
 .search-panel{
   display: none;
   transition: all .3s cubic-bezier(.215, .61, .355, 1);
+  z-index: 999999;
 }
+
 
 .container-search{
   width: 100%;
@@ -653,11 +760,21 @@ body.scroll-down.home .container-header{
   animation: fade-in 0.3s ease-in-out;
   animation-iteration-count: 1;
 }
+
 @keyframes fade-in{
 
   0% {opacity: 0;}
   100% {opacity: 1;}
 
+}
+
+body.js-focus-active .search-form input[type=text]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body .search-form input[type=text]:focus-visible {
+    outline: 2px solid var(--color-primary-dark) !important;
 }
 
 .container-search h3{
@@ -670,10 +787,21 @@ body.scroll-down.home .container-header{
   width: 40%;
 }
 
-.search-form input[type=text]{
-   padding:0 10px;
-   height: 60px;
+
+
+.search-form input[type="text"],
+.search-form input[type="text"]:focus,
+.search-form input[type="text"]:active,
+.search-form input[type="text"]:hover {
+    padding:0 10px;
+    height: 60px;
+
 }
+
+html body .search-form input[type="text"]:focus-visible {
+    outline: none !important;
+}
+
 
 .btn-close-search{
   width: 60px;
@@ -959,13 +1087,19 @@ body.scroll-down.home .container-header{
   transition: all .3s cubic-bezier(.215, .61, .355, 1);
 }
 
-.footer__menu a:hover, .header__menu a:active{
+.footer__menu a:hover{
   color:var(--color-primary-dark);
 }
 
-.footer__menu--active{
-  color:var(--color-primary-dark)!important;
+.footer__menu a:active{
+  color: var(--color-white);
 }
+
+.footer__menu .current-menu-item > a {
+    color: var(--color-primary-dark) !important;
+    text-decoration: underline; 
+}
+
 
 .footer__logo{
   width:100px;
@@ -1019,6 +1153,33 @@ body.scroll-down.home .container-header{
 }
 
 
+.up-page .back-top{
+  opacity: 1;
+  visibility: visible;
+  bottom: 22%;
+  rotate: 0deg;
+  transition: all .3s cubic-bezier(.215, .61, .355, 1);
+}
+
+.home .back-top{
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+.back-top:focus-within {
+    opacity: 1 !important;
+    visibility: visible !important;
+    bottom: 22% !important;
+    rotate: 0deg !important;
+}
+
+.footer__logo a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+
 @media (max-width: 768px) {
   
   .back-top{
@@ -1034,18 +1195,6 @@ body.scroll-down.home .container-header{
 
 }
 
-.up-page .back-top{
-  opacity: 1;
-  visibility: visible;
-  bottom: 22%;
-  rotate: 0deg;
-  transition: all .3s cubic-bezier(.215, .61, .355, 1);
-}
-
-.home .back-top{
-  opacity: 0;
-  visibility: hidden;
-}
 
 
 /* ! Pagination

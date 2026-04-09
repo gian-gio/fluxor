@@ -20,7 +20,7 @@ if (!$nome) $nome = $current_user->user_login; // Se il nome non è impostato, u
 get_header();
 ?>
 
-    <div class="reserved-page">
+    <div class="reserved-page" id="primary-content">
         <div class="reserved-page__header">
             <h4>Ciao, <strong><?php echo esc_html($nome . ' ' . $cognome); ?></strong></h4>
             <a href="<?php echo wp_logout_url(home_url()); ?>">Logout</a>

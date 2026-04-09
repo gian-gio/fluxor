@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="main">
+<main class="main" id="primary-content">
 
   <div class="error-404">
 

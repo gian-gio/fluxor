@@ -4,7 +4,7 @@ Template Name: Landing Page Template
 
 */ ?>
 
-<div class="container-landing">
+<div class="container-landing" id="primary-content">
 
         <?php get_header();  ?>
 
@@ -16,7 +16,7 @@ Template Name: Landing Page Template
 
 
         <div class="grid--xl">
-            <div class="col-xl-100">
+            <div class="col-xl-100" >
 
             <?php the_content(); ?>
 

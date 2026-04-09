@@ -12,24 +12,31 @@
 <body <?php body_class(); // add automic css classes based on the page ?> >
 
   <?php wp_body_open(); // insert script right after the body if needed ?>
+
+<a class="skip-link screen-reader-text" href="#primary-content">
+    <?php esc_html_e( 'Skip to content', 'fluxor' ); ?>
+</a>
   
+
 <div class="search-panel">
 
   <div class="container-search">
-    <a class="btn-close-search"></a>
+
     <div class="search-form">
       <h3><?php esc_attr_e('Search in the site', 'fluxor'); ?></h3>
       <form method="get" action="<?php echo esc_url(home_url()); ?>" class="form-search">
-        <input type="text" placeholder="<?php esc_attr_e('search...', 'fluxor'); ?>" name="s">
-        <button type="submit">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/icons/search-outline.svg" alt="Search"> 
-      </button>
+        <input type="text" placeholder="<?php esc_attr_e('search...', 'fluxor'); ?>" name="s" id="search-input">
+        <button type="submit" aria-label="<?php esc_attr_e('Run search', 'fluxor'); ?>">
+          <img src="<?php echo get_stylesheet_directory_uri(); ?>/icons/search-outline.svg" alt=""> 
+        </button>
       </form>
     </div>
+    
+    <a href="#" class="btn-close-search" role="button" aria-label="Close"></a>
+    
   </div>
 
 </div>
-
 
   <header class="container-header">
         <div class="header">
@@ -79,5 +86,7 @@
                 <span></span>
             </div>
         </div>
+
+        
     </header>
 

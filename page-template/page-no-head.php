@@ -13,7 +13,7 @@
 
     <!-- loop content -->
 
-  <div class="main">
+  <div class="main" id="primary-content">
 
     <?php 
     /* Image Url */

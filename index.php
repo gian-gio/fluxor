@@ -1,7 +1,7 @@
 <?php get_header(); // insert header.php inclusion ?>
 
 
-<div class="blog-list">
+<div class="blog-list" id="primary-content">
 
   <div class="grid--xl">
 

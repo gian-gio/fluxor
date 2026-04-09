@@ -1,31 +1,129 @@
 
 let hamburger = document.querySelector('.header__hamburger');
 
-
 hamburger.addEventListener("click", function() {
   document.body.classList.toggle('menu-open');
 });
 
-let icon_search = document.querySelectorAll('.icon-search a');
 
-icon_search.forEach(function(link, index) {
-  link.addEventListener("click", function(event) {
-      event.preventDefault(); // Previene il comportamento predefinito del link
-      var search_panel = document.querySelectorAll(".search-panel");
-      search_panel[index].style.display = "block"; // Mostra l'elemento
-  });
+/*  -----------------------------------------------------------------------------------------------
+  Search Panel
+--------------------------------------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Search Panel Close 
+    const iconSearch = document.querySelectorAll('.icon-search a');
+        const searchPanels = document.querySelectorAll(".search-panel");
+
+        iconSearch.forEach(function(link, index) {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                
+                if (searchPanels[index]) {
+                    searchPanels[index].style.display = "block";
+                    
+                    const input = searchPanels[index].querySelector('input[type="text"]');
+                    
+                    if (input) {
+                        setTimeout(() => {
+                            document.body.classList.add('js-focus-active');
+                            
+                            input.focus({ preventScroll: true });
+
+                            const removeJsFocus = () => {
+                                document.body.classList.remove('js-focus-active');
+                                window.removeEventListener('keydown', removeJsFocus);
+                                window.removeEventListener('mousedown', removeJsFocus);
+                            };
+                            window.addEventListener('keydown', removeJsFocus);
+                            window.addEventListener('mousedown', removeJsFocus);
+                            // ----------------------
+                        }, 200);
+                    }
+                }
+            });
+        });
+
+    // Search Panel Close
+    const btnCloseSearch = document.querySelectorAll('.btn-close-search');
+
+    btnCloseSearch.forEach(function(link, index) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+            
+            if (searchPanels[index]) {
+                searchPanels[index].style.display = "none";
+                
+                // Riporta il focus sull'icona che ha aperto il pannello (fondamentale per accessibilità)
+                if (iconSearch[index]) {
+                    iconSearch[index].focus();
+                }
+            }
+        });
+    });
+
+    // Closing with esc key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            searchPanels.forEach(function(panel, index) {
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                    if (iconSearch[index]) iconSearch[index].focus();
+                }
+            });
+        }
+    });
+
+});
+
+/*  -----------------------------------------------------------------------------------------------
+  Skip to content and nav 
+--------------------------------------------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', function() {
+    const menuItems = document.querySelectorAll('.header__menu li.menu-item-has-children');
+
+    menuItems.forEach(function(item) {
+        const link = item.querySelector('a');
+        const subMenu = item.querySelector('ul');
+
+        // 1. Gestione Focus: aggiunge una classe quando il link o i figli ricevono focus
+        link.addEventListener('focus', function() {
+            item.classList.add('is-focused');
+        });
+
+        // 2. Gestione Blur: rimuove la classe quando il focus esce dall'ultimo elemento del submenu
+        const subMenuLinks = subMenu.querySelectorAll('a');
+        const lastSubMenuLink = subMenuLinks[subMenuLinks.length - 1];
+
+        lastSubMenuLink.addEventListener('blur', function() {
+            item.classList.remove('is-focused');
+        });
+
+        // 3. Supporto tasto ESC: chiude il submenu se l'utente preme Esc mentre è dentro
+        item.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                item.classList.remove('is-focused');
+                link.focus(); // Riporta il focus al link principale
+            }
+        });
+    });
 });
 
 
-let btn_close_search = document.querySelectorAll('.btn-close-search');
 
-btn_close_search.forEach(function(link, index) {
-  link.addEventListener("click", function(event) {
-      event.preventDefault(); // Previene il comportamento predefinito del link
-      var search_panel = document.querySelectorAll(".search-panel");
-      search_panel[index].style.display = "none"; // Nasconde l'elemento
-  });
-});
+// Accessibility Management Back to Top
+const backTop = document.querySelector('.back-top');
+if (backTop) {
+    const backTopLink = backTop.querySelector('a');
+    
+    // Se l'utente arriva al fondo col tab e trova il link, 
+    // lo rendiamo visibile forzatamente tramite CSS (gestito da :focus-within sopra)
+    backTopLink.addEventListener('focus', function() {
+        document.body.classList.add('up-page');
+    });
+}
+
 
 
 /*  -----------------------------------------------------------------------------------------------

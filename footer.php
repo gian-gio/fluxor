@@ -5,13 +5,15 @@
       <div class="flex-start">
 
           <div class="footer__logo">
-              <?php 
+            <?php 
                 $footer_logo = get_theme_mod('footer_logo');
                 if ($footer_logo) {
+                    echo '<a href="' . esc_url(home_url('/')) . '" aria-label="' . esc_attr(get_bloginfo('name')) . '">';
                     echo '<img src="' . esc_url($footer_logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                    echo '</a>';
                 }
-              ?>
-          </div>
+                ?>
+              </div>
 
           <div>
               <h5>Company Name</h5>
@@ -32,16 +34,17 @@
 
     </div>
     <div class="col-xl-50 text-right sm-hide">
-    <?php
-        if (has_nav_menu('quickmenu')) {
+      <?php
+        if (has_nav_menu('footermenu')) { 
+            echo '<nav aria-label="Footer Navigation">'; 
             wp_nav_menu(array(
-              'theme_location' => 'footermenu',
-              'container' => false, 
-              'items_wrap' => '<ul class="footer__menu">%3$s</ul>'
-              ));
+                'theme_location' => 'footermenu',
+                'container' => false, 
+                'items_wrap' => '<ul class="footer__menu">%3$s</ul>'
+            ));
+            echo '</nav>';
         }
         ?>
-
     </div>
   </div>
   <div class="footer__copyright">

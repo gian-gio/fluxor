@@ -2,7 +2,7 @@
 
 <div class="blog-single__spacer"></div>
 
-<div class="grid--xl">
+<div class="grid--xl" id="primary-content">
 
 <div class="col-xl-70 col-md-70 col-sm-100">
 

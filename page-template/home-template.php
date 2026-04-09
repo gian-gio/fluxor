@@ -12,12 +12,13 @@ Template Name: Home Template
 
 
 
+  <div id="primary-content">
+    <div class="grid--xl">
+      <div class="col-xl-100">
 
-  <div class="grid--xl">
-    <div class="col-xl-100">
+          <?php the_content(); ?>
 
-      <?php the_content(); ?>
-
+      </div>
     </div>
   </div>
 
