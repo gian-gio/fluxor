@@ -226,6 +226,11 @@ add_action('admin_init', 'fluxor_admin_page_block');
               'slug'      => 'yith-woocommerce-product-slider-carousel', 
               'required'  => true, 
           ),
+          array(
+              'name'      => 'WPS Hide Login', 
+              'slug'      => 'wps-hide-login', 
+              'required'  => true, 
+          )
       );
   
       $config = array(

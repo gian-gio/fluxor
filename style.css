@@ -51,6 +51,8 @@ Use it to make something cool, have fun, and share what you've learned with othe
   --color-dark:#111111;
 
   --background-header:#111111;
+
+  --radius: 10px;
 }
 
 
@@ -76,8 +78,6 @@ html {
 }
 
 h1,h2,h3,h4,h5,h6, p, ol, ul{margin:0; padding: 0;}
-
-ol,ul{list-style-type: none;}
 
 img{height: auto;}
 
@@ -209,11 +209,12 @@ body.scroll-down.home .container-header{
   .header__logo{
     font-weight: 700;
     color:#FFF;
+
+    img{
+      width:160px;
+    }
   }
-  .header__logo img{
-    width:160px;
-  }
-  
+ 
   
   .header__menu li{
     display: inline-block;
@@ -222,6 +223,7 @@ body.scroll-down.home .container-header{
     padding-top:12px;
     padding-right: 40px;
     font-size: 1rem;
+    
   }
 
   .header__menu li a{
@@ -522,33 +524,36 @@ body.scroll-down.home .container-header{
 
 .hero{
   min-height: 80vh;
+
+  h1{
+    font-size: 4.2rem;
+    line-height: 4.2rem;
+  }
+
+  p{
+    font-size: 1.2rem;
+  }
+
 }
 
-.hero h1{
-  font-size: 4.2rem;
-  line-height: 4.2rem;
-}
 
-.hero p{
-  font-size: 1.2rem;
-}
 
 @media (max-width: 1440px) {
 
   .hero{
     min-height: 100vh;
-  }
-  
 
-  .hero h1{
-    font-size: 3.6rem!important;
-    line-height: 3.6rem;
+    h1{
+      font-size: 3.6rem!important;
+      line-height: 3.6rem;
+    }
+
+    p{
+      font-size: 1rem;
+    }
+
   }
-  
-  .hero p{
-    font-size: 1rem;
-  }
-  
+    
 }
 
 
@@ -556,16 +561,16 @@ body.scroll-down.home .container-header{
 
   .hero{
     min-height: 100vh;
-  }
-  
 
-  .hero h1{
-    font-size: 3.2rem!important;
-    line-height: 3.2rem;
-  }
-  
-  .hero p{
-    font-size: 1rem;
+    h1{
+      font-size: 3.2rem!important;
+      line-height: 3.2rem;
+    }
+
+    p{
+      font-size: 1rem;
+    }
+
   }
   
 }
@@ -574,14 +579,14 @@ body.scroll-down.home .container-header{
 
   .hero{
     min-height: 90vh;
+
+    h1{
+      font-size: 3rem!important;
+      line-height: 3rem;
+    }
+
   }
   
-
-  .hero h1{
-    font-size: 3rem!important;
-    line-height: 3rem;
-  }
-    
 }
 
 
@@ -590,7 +595,7 @@ body.scroll-down.home .container-header{
 
   .button a:link, .button a:visited{
     background-color: var(--color-primary);
-    border-radius: 0px!important;
+    border-radius: var(--radius);
     transition: all .3s cubic-bezier(.215, .61, .355, 1);
     color: var(--color-white);
     font-size: 0.9rem!important;
@@ -1185,10 +1190,10 @@ html body .search-form input[type="text"]:focus-visible {
   .back-top{
     width: 50px;
     height: 50px;
-    padding-top: 5px;
+    padding-top: 12px;
   }
 
-  back-top a:before{
+  .back-top a:before{
     width: 25px;
     height: 25px;
   }
@@ -1691,13 +1696,10 @@ html body .search-form input[type="text"]:focus-visible {
 .mx-100{margin:0 100px}
 
 
-input, textarea{border: 3px solid #ddd; border-radius: 3px;padding: 10px; font-family: var(--font-default);}
-input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radius: 3px;padding: 10px;}
 
-
-.form-search{width: 100%; border: 1px solid #ddd; padding: 10px 0;}
-.form-search input{width: calc(100% - 40px); border: none; background: transparent; font-size: 1.1rem; outline: none; color: var(--color-white); font-family: var(--font-default);}
-.form-search button{padding: 0px; background: transparent; border:none;}
+.form-search{width: 100%; border: 1px solid #ddd; padding: 10px 0; border-radius: var(--radius);}
+.form-search input{width: calc(100% - 40px); border: none; background: transparent; font-size: 1.1rem; outline: none; color: var(--color-white); font-family: var(--font-default); border-radius: var(--radius);}
+.form-search button{padding: 0px; background: transparent; border:none; border-radius: var(--radius);}
 .form-search img{width: 25px; margin-bottom: -8px; filter: invert(1);}
 
 
@@ -1713,7 +1715,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   width: 100%;
   height: 50px;
   border: 1px solid #CCC;
-  border-radius: 0px;
+  border-radius: var(--radius);
   outline: none;
   font-family: var(--font-default);
 }
@@ -1722,7 +1724,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   width: 20%;
   height: 50px;
   border:0px none;
-  border-radius: 0px;
+  border-radius: var(--radius);
   background-color: var(--color-secondary);
   color: var(--color-white);
   text-indent: -9999px;
@@ -1750,6 +1752,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   -moz-appearance: none;
   appearance: none;
   background: #fff; /* sfondo base */
+  border-radius: var(--radius);
 }
 
 
@@ -1764,6 +1767,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   font-size: 1rem;
   color: var(--color-default);
   font-family: var(--font-default);
+  border-radius: var(--radius);
 }
 
 .wpcf7 input[type=submit]{
@@ -1778,6 +1782,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   border:0px none;
   margin-bottom: 10px;
   transition: .3s all;
+  border-radius: var(--radius);
 }
 
 .wpcf7 input[type=submit]:hover{
@@ -1794,6 +1799,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   font-size: 1rem;
   color: var(--color-default);
   font-family: var(--font-default);
+  border-radius: var(--radius);
 }
 
 .wpcf7 textarea{
@@ -1804,6 +1810,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   border:1px solid #CCC;
   padding: 10px;
   font-family: var(--font-default);
+  border-radius: var(--radius);
 }
 
 .wpcf7 label{
@@ -2015,7 +2022,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
 .accordion {
   max-width: 600px;
   margin: 0 auto;
-  border-radius: 5px;
+  border-radius: var(--radius);
 }
 
 .accordion-item {
@@ -2116,7 +2123,7 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   padding: 10px;
   margin:3px 0 0 0;
   border: 1px solid #ddd;
-  border-radius: 0px;
+  border-radius: var(--radius);
   outline: none;
 }
 
@@ -2132,6 +2139,8 @@ input[type=submit], button{border: 3px solid #ddd; background: #ddd; border-radi
   transition: background 0.3s ease;
   margin-top:30px;
   font-weight: var(--font-semi-bold);
+  border-radius: var(--radius);
+
 }
 
 
