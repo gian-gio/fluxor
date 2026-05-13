@@ -41,18 +41,18 @@ function fluxor_setup() {
         return $sizes;
     });
 
-    // Impedisce il lazy load sulla primissima immagine della pagina (solitamente la più importante)
+    // Prevents lazy loading on the very first image on the page (usually the most important one)
     add_filter( 'wp_get_attachment_image_attributes', function( $attr, $attachment, $size ) {
         static $count = 0;
         if ( ! is_admin() && $count === 0 ) {
-            $attr['loading'] = 'eager'; // Carica immediatamente
-            $attr['fetchpriority'] = 'high'; // Priorità massima
+            $attr['loading'] = 'eager'; // Upload image
+            $attr['fetchpriority'] = 'high'; // Top priority
         }
         $count++;
         return $attr;
     }, 10, 3 );
 
-    //Decodifica immagini in modo asincrono
+    // Decode images asynchronously
     add_filter( 'wp_get_attachment_image_attributes', function( $attr ) {
     if ( ! is_admin() ) {
         $attr['decoding'] = 'async';
@@ -60,12 +60,10 @@ function fluxor_setup() {
     return $attr;
     }, 10 );
 
-    /**
-     * Limita il peso massimo dei file caricati (es. 2MB)
-     */
+    // Limit the maximum size of uploaded files (e.g. 2MB)
     add_filter( 'wp_handle_upload_prefilter', 'fluxor_limit_upload_size' );
     function fluxor_limit_upload_size( $file ) {
-        $size = $file['size']; // Dimensione in byte
+        $size = $file['size']; // Size in bytes
         $limit = 2 * 1024 * 1024; // 2 Megabyte
         $limit_text = '2MB';
 
@@ -81,17 +79,12 @@ function fluxor_setup() {
         return 2560; 
     });
 
-    /**
-     * Riduce la qualità di compressione per risparmiare spazio
-     */
+    // Reduce compression quality to save space
     add_filter( 'jpeg_quality', function($quality) {
         return 75;
     });
 
-    /**
-     * Forza il ridimensionamento fisico dell'originale a 2000px.
-     * Questo cancella il file gigante e tiene solo una versione ragionevole.
-     */
+    // Forces the original to physically resize to 2000px.
     add_filter( 'wp_handle_upload', function( $upload ) {
         if ( $upload['type'] != 'image/jpeg' && $upload['type'] != 'image/png' ) return $upload;
 
@@ -104,17 +97,6 @@ function fluxor_setup() {
             }
         }
         return $upload;
-    });
-
-    /**
-     * Aggiunge lazy load ai banner di WP Bannerize Pro
-     */
-    add_filter( 'wp_bannerize_pro_banner_html', function( $html ) {
-        // Se il banner non è il primissimo in alto, aggiungiamo lazy load
-        if ( strpos( $html, 'loading=' ) === false ) {
-            $html = str_replace( '<img ', '<img loading="lazy" ', $html );
-        }
-        return $html;
     });
 
 
@@ -133,7 +115,7 @@ function fluxor_setup() {
     //add_theme_support('wc-product-gallery-zoom');
     //add_theme_support('wc-product-gallery-slider');
 
-  /* block pattern */
+  // block pattern
   require_once( get_template_directory() . '/functions/patterns.php' );
 
 }
@@ -142,9 +124,8 @@ add_action('after_setup_theme', 'fluxor_setup');
 
 
 
-/**
- * Aggiunge i Dati Strutturati JSON-LD alla Home Page per migliorare la SEO Locale
- */
+/*Add JSON-LD Structured Data to Your Home Page to Improve Local SEO
+---------------------------------------------------------------------------------------- */
 function schema_json_ld_fluxor() {
     if ( is_front_page() ) {
         $payload = array(
@@ -191,24 +172,25 @@ add_action('wp_head', 'schema_json_ld_fluxor');
 
 
 
-// WooCommerce support
+/* WooCommerce support
+------------------------------------------------------------------------ */
 add_theme_support( 'woocommerce' );
 
 function fluxor_woocommerce_cart_menu_item($items, $args) {
     if ($args->theme_location === 'quickmenu' && class_exists('WooCommerce')) {
 
-        // Mostra icona account
+        // Show account icon
         $account_url = esc_url(wc_get_page_permalink('myaccount'));
 
         if (is_user_logged_in()) {
-            // Utente loggato → link diretto alla dashboard
+            // Logged in user → direct link to the dashboard
             $items .= '<li class="account-item">
                 <a href="' . $account_url . '">
                     <i class="bx bxs-user"></i>
                 </a>
             </li>';
         } else {
-            // Utente non loggato → link alla login (stessa pagina WooCommerce)
+            // User not logged in → login link (same WooCommerce page)
             $items .= '<li class="account-item">
                 <a href="' . $account_url . '">
                     <i class="bx bxs-user"></i>
@@ -217,7 +199,7 @@ function fluxor_woocommerce_cart_menu_item($items, $args) {
         }
 
         
-        // Mostra icona carrello
+        // Show cart icon
         if (get_theme_mod('fluxor_show_cart', true)) {
             $cart_count = WC()->cart->get_cart_contents_count();
             $cart_url = wc_get_cart_url();
@@ -239,13 +221,13 @@ add_filter('wp_nav_menu_items', 'fluxor_woocommerce_cart_menu_item', 10, 2);
 
 
 function fluxor_customize_register($wp_customize) {
-  // Aggiungi una sezione WooCommerce
+  // Add a WooCommerce section
   $wp_customize->add_section('fluxor_woocommerce_section', array(
       'title'    => __('WooCommerce Settings', 'fluxor'),
       'priority' => 30,
   ));
 
-  // Aggiungi una opzione per mostrare/nascondere il carrello nel menu
+  // Add an option to show/hide the cart in the menu
   $wp_customize->add_setting('fluxor_show_cart', array(
       'default'   => true,
       'transport' => 'refresh',
@@ -266,29 +248,32 @@ function fluxor_sanitize_checkbox($checked) {
   return (isset($checked) && $checked === true) ? true : false;
 }
 
-// Evita che WooCommerce cerchi di forzare l’allineamento dei template personalizzati
+// Prevent WooCommerce from trying to force custom template alignment
 add_filter( 'woocommerce_defer_template_part_sync', '__return_true' );
 
 
 
-//Imposta il numero di prodotti per pagina nello shop
+// Set the number of products per page in the shop
 
 add_filter( 'loop_shop_per_page', 'fluxor_products_per_page', 20 );
 
 function fluxor_products_per_page( $cols ) {
-    // Imposta i prodotti per pagina
+    // Set products per page
     return 12;
 }
 
 
-// Load translation
+/* Load translation
+---------------------------------------------------------------------------------- */
 function fluxor_load_textdomain() {
   load_theme_textdomain('fluxor', get_template_directory() . '/languages');
 }
 add_action('after_setup_theme', 'fluxor_load_textdomain');
 
 
-// Custom Sidebar
+/* Custom Sidebar
+----------------------------------------------------------------------------------- */
+
 function fluxor_custom_sidebar() {
   register_sidebar( array(
       'name'          => 'Custom Sidebar',
@@ -302,7 +287,8 @@ function fluxor_custom_sidebar() {
 add_action( 'widgets_init', 'fluxor_custom_sidebar' );
 
 
-/*Custom Logo */
+/* Custom Logo 
+--------------------------------------------------------------------------------- */
 
 function fluxor_customize_logo_section($wp_customize) {
     
@@ -339,9 +325,10 @@ function fluxor_customize_logo_section($wp_customize) {
 add_action('customize_register', 'fluxor_customize_logo_section');
 
 
-/**
- * Personalizzazioni pagina login (logo dinamico + styling)
- */
+
+ /* Login page customizations (dynamic logo + styling)
+ ----------------------------------------------------------------------------------------------- */
+
 if ( ! function_exists( 'fluxor_custom_login_style' ) ) {
     function fluxor_custom_login_style() {
         $custom_logo_id = get_theme_mod('custom_logo');
@@ -422,7 +409,8 @@ if ( ! function_exists( 'fluxor_login_logo_title' ) ) {
 
 
 /*  Enqueue javascript
-/* ------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+
   function fluxor_scripts() {
 
     wp_enqueue_script('fluxor-gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), null, true);
@@ -437,7 +425,7 @@ add_action( 'wp_enqueue_scripts', 'fluxor_scripts' );
 
 
 /*  Enqueue style
-/* ------------------------------------ */
+/* ------------------------------------------------------------------------------ */
 
 function fluxor_styles() {
 
@@ -465,7 +453,9 @@ function fluxor_styles() {
 add_action( 'wp_enqueue_scripts', 'fluxor_styles' );
 
 
-/* Add custom CSS to the header */
+/* Add custom CSS to the header 
+------------------------------------------------------------------------------------------------------ */
+
 function fluxor_customize_css() {
   $font_headings = str_replace('+', ' ', sanitize_text_field(get_theme_mod('fluxor_google_font', 'DM Sans')));
   $font_body = str_replace('+', ' ', sanitize_text_field(get_theme_mod('fluxor_google_font_body', 'DM Sans')));
@@ -479,20 +469,22 @@ add_action('wp_head', 'fluxor_customize_css');
 
 
 
-// Impedisce la creazione di nuovi utenti admin non autorizzati
+/* Prevents the creation of new unauthorized admin users
+-------------------------------------------------------------------------------------------------------- */
+
 add_action( 'user_register', 'blocca_nuovi_admin', 10, 1 );
 
 function blocca_nuovi_admin( $user_id ) {
     $user = get_userdata( $user_id );
 
     if ( in_array( 'administrator', (array) $user->roles ) ) {
-        // Degrada l'utente a subscriber
+        // Demote the user to subscriber
         $user->set_role( 'subscriber' );
 
-        // Logga il tentativo (puoi controllare con "tail -f error_log")
+        // Log the attempt (you can check with "tail -f error_log")
         error_log( "⚠️ Tentativo bloccato: utente ID {$user_id} voleva ruolo ADMIN." );
 
-        // Opzionale: invia notifica email all'admin
+        // Optional: Send email notification to admin
         wp_mail(
             get_option( 'admin_email' ),
             'Tentativo sospetto di creazione admin',
@@ -503,12 +495,13 @@ function blocca_nuovi_admin( $user_id ) {
 }
 
 
-/**
- * OTTIMIZZAZIONE PERFORMANCE EXTRA
- * Rimuove script inutili (Emoji) e ottimizza il caricamento dei font
- */
+
+ /* EXTRA PERFORMANCE OPTIMIZATION
+    Remove unnecessary scripts (Emoji) and optimize font loading
+ --------------------------------------------------------------------------------------------------------- */
+
 function fluxor_extra_optimization() {
-    // Rimuove le emoji che caricano JS e CSS su ogni pagina
+    // Removes emojis that load JS and CSS on every page
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('wp_print_styles', 'print_emoji_styles');
     remove_action('admin_print_scripts', 'print_emoji_detection_script');
@@ -517,17 +510,17 @@ function fluxor_extra_optimization() {
     remove_filter('comment_text_rss', 'wp_staticize_emoji');
     remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
     
-    // Rimuove il link agli Shortlink (inutile per la SEO e rallenta l'head)
+    // Removes the Shortlink link (useless for SEO and slows down the head)
     remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
     
-    // Rimuove la versione di WordPress per sicurezza e pulizia
+    // Remove WordPress version for security and cleanup
     remove_action('wp_head', 'wp_generator');
 }
 add_action('init', 'fluxor_extra_optimization');
 
-/**
- * Caricamento dei Font con "Swap" per evitare testi invisibili durante il caricamento
- */
+/* Loading Fonts with "Swap" to avoid invisible text during loading
+ -------------------------------------------------------------------------------------------------------- */
+
 add_filter('style_loader_tag', 'fluxor_add_font_display_swap', 10, 2);
 function fluxor_add_font_display_swap($tag, $handle) {
     if ('fluxor-google-font' === $handle || 'fluxor-google-font-body' === $handle) {
@@ -538,7 +531,9 @@ function fluxor_add_font_display_swap($tag, $handle) {
 
 
 
-/* Include additional customizer functions */
+/* Includes additional customizer functions
+---------------------------------------------------------------------------------------------------------- */
+
 if (file_exists(get_template_directory() . '/functions/customizer.php')) {
   require_once(get_template_directory() . '/functions/customizer.php');
 }

@@ -257,7 +257,7 @@
   font-size: 1.4rem;
 }
 
-/* Freccia */
+/* Arrow */
 .toggle-link .bx {
   transition: transform 0.25s ease;
 }
@@ -265,11 +265,11 @@
   transform: rotate(180deg);
 }
 
-/* Nasconde i level-3 di default */
+/* Hide level-3 by default */
 .submenu-container { display: none; }
 li.has-children.open > .submenu-container { display: block; }
 
-/* Rotazione della freccia */
+/* Arrow rotation */
 .has-children.open a .bx {
   transform: rotate(180deg);
   transition: transform 0.25s ease;
@@ -428,7 +428,7 @@ li.has-children.open > .submenu-container { display: block; }
   width: 80%;
 }
 
-/* Griglia prodotti WooCommerce */
+/* WooCommerce Product Grid */
 ul.products {
   width: 100%;
   display: grid;
@@ -695,7 +695,8 @@ ul.products {
 }
 
 
-/* --- Tabella Info Aggiuntive --- */
+/* Additional Info Table
+---------------------------------------------------- */
 .woocommerce-product-attributes {
   width: 100%;
   border-collapse: collapse;
@@ -711,7 +712,7 @@ ul.products {
   vertical-align: middle;
 }
 
-/* Etichette (colonna sinistra) */
+/* Labels (left column) */
 .woocommerce-product-attributes th {
   background-color:rgba(255,255,255,0)!important;
   font-weight: 600;
@@ -721,13 +722,13 @@ ul.products {
 }
 
 
-/* Valori (colonna destra) */
+/* Values ​​(right column) */
 .woocommerce-product-attributes td {
   background-color:rgba(255,255,255,0)!important;
   padding: 0 15px!important;
 }
 
-/* Alternanza di righe */
+/* Alternation of rows */
 .woocommerce-product-attributes tr:nth-child(even) td,
 .woocommerce-product-attributes tr:nth-child(even) th {
   background-color:rgba(255,255,255,0)!important;
@@ -1112,7 +1113,7 @@ ul.products {
 }
 
 
-/* Rimuove freccette da input number - Chrome, Safari, Edge, Opera */
+/* Remove arrows from number input - Chrome, Safari, Edge, Opera */
 .quantity-wrapper input[type=number]::-webkit-outer-spin-button,
 .quantity-wrapper input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;

@@ -45,15 +45,15 @@
           $custom_logo_id = get_theme_mod('custom_logo'); // Ottiene l'ID del logo
 
           if (function_exists('the_custom_logo') && has_custom_logo()) {
-              // Ottiene l'URL del logo
-              $logo_url = wp_get_attachment_image_src($custom_logo_id, 'full')[0]; 
+
+          $logo_url = wp_get_attachment_image_src($custom_logo_id, 'full')[0]; 
 
               echo '<a class="header__logo" href="' . esc_url(home_url('/')) . '">';
               echo '<img src="' . esc_url($logo_url) . '" alt="' . get_bloginfo('name') . '">';
               echo '</a>';
           } else {
-              // Visualizza il nome del sito come fallback
-              echo '<a class="header__logo" href="' . esc_url(home_url('/')) . '">';
+
+          echo '<a class="header__logo" href="' . esc_url(home_url('/')) . '">';
               echo '<span>' . get_bloginfo('name') . '</span>';
               echo '</a>';
           }

@@ -96,4 +96,4 @@
 
 <div class="spacer"></div>
 
-  <?php get_footer(); // insert footer.php inclusion ?>
+<?php get_footer(); // insert footer.php inclusion ?>

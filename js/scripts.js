@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (searchPanels[index]) {
                 searchPanels[index].style.display = "none";
                 
-                // Riporta il focus sull'icona che ha aperto il pannello (fondamentale per accessibilità)
+                // Returns focus to the icon that opened the panel
                 if (iconSearch[index]) {
                     iconSearch[index].focus();
                 }
@@ -87,12 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const link = item.querySelector('a');
         const subMenu = item.querySelector('ul');
 
-        // 1. Gestione Focus: aggiunge una classe quando il link o i figli ricevono focus
+        // 1. Focus Management: Adds a class when the link or children receive focus
         link.addEventListener('focus', function() {
             item.classList.add('is-focused');
         });
 
-        // 2. Gestione Blur: rimuove la classe quando il focus esce dall'ultimo elemento del submenu
+        // 2. Blur Handling: Removes the class when focus leaves the last item in the submenu
         const subMenuLinks = subMenu.querySelectorAll('a');
         const lastSubMenuLink = subMenuLinks[subMenuLinks.length - 1];
 
@@ -100,14 +100,25 @@ document.addEventListener('DOMContentLoaded', function() {
             item.classList.remove('is-focused');
         });
 
-        // 3. Supporto tasto ESC: chiude il submenu se l'utente preme Esc mentre è dentro
+        // 3. ESC key support: closes the submenu if the user presses Esc while inside
         item.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 item.classList.remove('is-focused');
-                link.focus(); // Riporta il focus al link principale
+                link.focus(); // Brings focus back to the main link
             }
         });
     });
+});
+
+
+// Tab navigation
+window.addEventListener('keydown', e => {
+    if (e.key === 'Tab') {
+        document.body.classList.add('user-is-tabbing');
+    }
+});
+window.addEventListener('mousedown', () => {
+    document.body.classList.remove('user-is-tabbing');
 });
 
 
@@ -117,8 +128,8 @@ const backTop = document.querySelector('.back-top');
 if (backTop) {
     const backTopLink = backTop.querySelector('a');
     
-    // Se l'utente arriva al fondo col tab e trova il link, 
-    // lo rendiamo visibile forzatamente tramite CSS (gestito da :focus-within sopra)
+    // If the user tabs to the bottom and finds the link, 
+    // we force it to be visible via CSS (handled by :focus-within above)
     backTopLink.addEventListener('focus', function() {
         document.body.classList.add('up-page');
     });
@@ -185,13 +196,13 @@ elem.addEventListener('click', e => {
 // Scroll up page
 const scrollUpButtons = document.querySelectorAll('.back-top');
 
-// Aggiunge un evento di click a ciascun elemento
+// Adds a click event to each element
 scrollUpButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // Effettua lo scroll verso l'alto con animazione fluida
+    // Scroll up with smooth animation
     window.scrollTo({
-      top: 0, // Posizione verticale 0
-      behavior: 'smooth' // Scorrimento fluido
+      top: 0, // Vertical position 0
+      behavior: 'smooth' // Smooth scrolling
     });
   });
 });
@@ -226,7 +237,7 @@ WooCommerce scripts
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('a.toggle-link[data-toggle="true"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
-      e.preventDefault(); // disattiva la navigazione per il toggle
+      e.preventDefault(); 
       const li = this.closest('li');
       const container = document.getElementById(this.getAttribute('aria-controls'));
       const isOpen = li.classList.contains('open');
@@ -240,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Apri rami attivi (se WP aggiunge classi current-cat ecc.)
+  // Open active branches (if WP adds current-cat classes etc.)0
   document.querySelectorAll('.product-categories a.current-cat, .product-categories a.current-cat-parent, .product-categories a.current-cat-ancestor').forEach(function (activeLink) {
     let li = activeLink.closest('li');
     while (li) {

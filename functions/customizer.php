@@ -75,14 +75,14 @@ add_action('customize_register', 'fluxor_customize_fonts');
 -----------------------------------------*/
 
 function fluxor_customize_whatsapp_register($wp_customize) {
-    // Aggiungi una sezione al Customizer
+    // Add a section to the Customizer
     $wp_customize->add_section('fluxor_whatsapp_section', array(
         'title'       => __('WhatsApp Settings', 'fluxor'),
         'description' => __('Configure the WhatsApp button settings.', 'fluxor'),
         'priority'    => 160,
     ));
 
-    // Aggiungi un'impostazione per il numero di telefono
+    // Add a phone number setting
     $wp_customize->add_setting('whatsapp_phone_number', array(
         'default'           => '',
         'sanitize_callback' => 'sanitize_text_field',
@@ -90,7 +90,7 @@ function fluxor_customize_whatsapp_register($wp_customize) {
         'capability'        => 'edit_theme_options',
     ));
 
-    // Aggiungi un controllo per il numero di telefono
+    // Add a phone number control
     $wp_customize->add_control('whatsapp_phone_number_control', array(
         'label'       => __('WhatsApp Phone Number', 'fluxor'),
         'section'     => 'fluxor_whatsapp_section',
@@ -118,10 +118,10 @@ function fluxor_last_post_shortcode($atts) {
         'order' => 'DESC' 
     );
   
-    // Esegui la query
+    // Run the query
     $the_query = new WP_Query($args);
   
-    // Inizializza una variabile per l'output
+    // Initializes a variable for output
     $output = '';
   
     // Loop
@@ -132,9 +132,9 @@ function fluxor_last_post_shortcode($atts) {
             
             $output .= '<div class="col-xl-33 col-md-33 col-sm-100">';
             
-            // Controlla se il post ha un'immagine in evidenza
+            // Check if the post has a featured image
             if (has_post_thumbnail()) {
-                // Ottiene l'URL dell'immagine in evidenza
+                // Gets the URL of the featured image
                 $thumbnail_id = get_post_thumbnail_id();
                 $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'large', true);
                 

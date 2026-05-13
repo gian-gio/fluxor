@@ -11,8 +11,8 @@
     <?php 
     /* Image Url */
     $image_attributes = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
-    $image_url = $image_attributes ? $image_attributes[0] : ''; // fallback a stringa vuota
-    //?>
+    $image_url = $image_attributes ? $image_attributes[0] : ''; 
+    ?>
 
 
     <div class="main__cover fade-in" style="background:linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)),url(<?php echo esc_url($image_url); ?>) center center; background-size:cover;">

@@ -1,7 +1,7 @@
 /*
 Theme Name: Fluxor
 Description: A flexible and lightweight WordPress theme for blogs, portfolios, business sites, and WooCommerce stores. Fully responsive and easy to customize.
-Version: 1.0.4
+Version: 1.1.0
 Author: Gianluca Giuliano
 Site: https://gianlucagiuliano.it
 Text Domain: fluxor
@@ -86,29 +86,17 @@ a:hover{color: var(--color-primary-dark);}
 a:active{color: var(--color-primary);}
 
 
-:focus {
-    outline: none;
-}
-
-
-button:focus,
-a:focus,
-input:focus,
-textarea:focus,
-[tabindex]:focus {
+*:focus {
     outline: none !important;
-    box-shadow: none !important;
 }
 
-/* 2. We activate the border ONLY for the keyboard (Global Focus Ring) */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-[tabindex]:focus-visible {
+/* Tab navigation */
+.user-is-tabbing *:focus {
     outline: 2px solid var(--color-primary-dark) !important;
     outline-offset: 4px !important;
 }
+
+
 
 
 
@@ -158,8 +146,8 @@ h6{font-size: 0.6rem;}
 
 
 
-/* ! Header */
-/*----------------------------------------------------------------------------------- */
+/* ! Header 
+----------------------------------------------------------------------------------- */
 .container-header{
   padding: 20px 0;
   width: 100%;
@@ -206,6 +194,8 @@ body.scroll-down.home .container-header{
   }
 
  
+/* Header Logo */
+
   .header__logo{
     font-weight: 700;
     color:#FFF;
@@ -215,126 +205,117 @@ body.scroll-down.home .container-header{
     }
   }
  
-  
-  .header__menu li{
-    display: inline-block;
-    position:relative;
-    height: 40px;
-    padding-top:12px;
-    padding-right: 40px;
-    font-size: 1rem;
-    
-  }
 
-  .header__menu li a{
-    position: relative;
-  }
-  
-  .header__menu li:last-child{
-    padding-right: 0px;
-  }
+/* Header Menu */
 
-  .header__menu li:hover > ul{
-    display: block;
-    visibility: visible;
-  }
+.header__menu li {
+  display: inline-block;
+  position: relative;
+  height: 40px;
+  padding-top: 12px;
+  padding-right: 40px;
+  font-size: 1rem;
+}
 
-  .header__menu li ul{
-    display: none;
-    visibility: hidden;
-    position: absolute;
-    left: 0;
-    top: 36px;
-    padding:20px;
-    min-width: 150px;
-    background:rgba(0,0,0,1);
-  }
+.header__menu li a {
+  position: relative;
+  color: var(--color-white);
+  transition: all .3s cubic-bezier(.215, .61, .355, 1);
+  display: inline-block; /* Importante per il posizionamento degli indicatori */
+}
 
-  .header__menu li:hover > ul{
-    display: block;
-    visibility: visible;
-  }
+.header__menu li:last-child {
+  padding-right: 0px;
+}
 
+.header__menu li ul {
+  display: none;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 36px;
+  padding: 15px;
+  min-width: 180px; 
+  max-width: 280px; 
+  width: max-content; 
+  background: rgba(0,0,0,1);
+  border: 1px solid var(--color-white);
+  z-index: 99;
+}
 
-  .header__menu li ul li::before{
-    content:"- "
-  }
+.header__menu li:hover > ul {
+  display: block;
+  visibility: visible;
+}
 
-  .header__menu li ul li{
-    height: auto;
-    width: 100%;
-    font-size: 0.9rem;
-    padding: 0 0 10px 0;
-    margin:0;
-  }
-  .header__menu li ul li:last-child{
-    height: auto;
-    width: 100%;
-    font-size: 0.9rem;
-    padding:0;
-    margin:0;
-  }
+.header__menu li ul li {
+  height: auto;
+  width: 100%;
+  font-size: 0.9rem;
+  padding: 0 0 10px 0;
+  margin: 0;
+}
 
-  .header__menu > li.menu-item-has-children{
-    margin-right: 10px;
-  }
+.header__menu li ul li a::before {
+  content: "- ";
+  padding-right: 10px;
+  flex-shrink: 0;
+}
 
-  .header__menu > li.menu-item-has-children > a::after{
-    content:" ";
-    background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Chevron Down</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>') ;
-    background-size: 100%;
-    width: 15px;
-    height: 15px;
-    position:absolute;
-    top:50%;
-    transform: translateY(-50%);
-    right:-18px;
-    filter: invert(1);
-  }
+.header__menu li ul li a {
+  display: flex;           
+  justify-content: start; 
+  align-items: center; 
+  width: 100%;
+  white-space: normal;     
+  line-height: 1.4;
+  padding-right: 20px;
+}
 
-/* --- Gestione Terzo Livello (e successivi) --- */
+.header__menu li ul li:last-child {
+  padding: 0;
+}
 
-  .header__menu li ul li ul {
-      top: 0;           /* Allinea il sottomenu all'altezza della voce corrente */
-      left: 105%;       /* Sposta il menu completamente a destra */
-      margin-top: -19px; /* Compensa l'eventuale padding del contenitore genitore se necessario */
-  }
+.header__menu > li.menu-item-has-children > a::after {
+  content: " ";
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>');
+  background-size: 100%;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -18px;
+  filter: invert(1);
+}
 
-  .header__menu li ul li.menu-item-has-children > a::after {
-      content: " ";
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Chevron Forward</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>');
-      background-size: 100%;
-      width: 12px;
-      height: 12px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: -20px; /* Regola in base al padding del tuo design */
-      filter: invert(1);
-  }
+.header__menu li ul li ul {
+  top: -16px;       
+  left: 100%; 
+  margin-top: 0;
+}
 
-  .header__menu li ul li.menu-item-has-children > a::after {
-      /* Sovrascrive il selettore che mette la freccia in basso */
-      display: inline-block;
-  }
+.header__menu li ul li.menu-item-has-children > a::after {
+  content: " ";
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>');
+  background-size: 100%;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  right: 0;          
+  top: 4px;          
+  display: inline-block;
+  filter: none; 
+}
 
+.header__menu a:hover {
+  color: var(--color-primary-dark);
+}
 
+.header__menu a:active {
+  color: var(--color-white);
+}  
 
-  .header__menu a {
-    color:var(--color-white);
-    transition: all .3s cubic-bezier(.215, .61, .355, 1);
-  }
-  
-  .header__menu a:hover{
-    color:var(--color-primary-dark);
-  }
-
-  .header__menu a:active{
-    color:var(--color-white);
-  }
-  
-
-/* --- Menu Active --- */
 
 .header__menu li.current-menu-item > a,
 .header__menu li.current-menu-parent > a,
@@ -359,7 +340,20 @@ body.scroll-down.home .container-header{
 }
 
 
+.header__menu li:focus-within > ul {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 
+
+.header__menu li ul {
+    transition: opacity .3s ease;
+}
+
+
+
+/* Header Quick */
 
   .header__quick li {
     position: relative;
@@ -391,19 +385,6 @@ body.scroll-down.home .container-header{
     display: none;
   }
 
-
-
-/* 3. Submenu visibility management */
-.header__menu li:focus-within > ul {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-
-.header__menu li ul {
-    transition: opacity .3s ease;
-}
 
   
 
@@ -489,6 +470,7 @@ body.scroll-down.home .container-header{
       background: none;
       padding:15px 0 0 15px;
       top: 0;
+      border: 0px none;
     }
 
     .header__menu li ul li{
@@ -496,6 +478,17 @@ body.scroll-down.home .container-header{
       padding: 0 0 15px 0;
     }
 
+
+    .header__menu li ul li ul {
+        top: 0;       
+        left: 15px; 
+      }
+      
+
+    .header__menu li ul li.menu-item-has-children > a::after {
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>');
+      top: 5px;          
+    }
 
 
   
@@ -828,7 +821,7 @@ body .search-form input[type=text]:focus-visible {
 .search-form input[type="text"]:hover {
     padding:0 10px;
     height: 60px;
-
+    border-radius: var(--radius);
 }
 
 html body .search-form input[type="text"]:focus-visible {
@@ -1285,6 +1278,7 @@ html body .search-form input[type="text"]:focus-visible {
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all .3s cubic-bezier(.215, .61, .355, 1);
+  border-radius: var(--radius);
 }
 
 .back-button:hover {
@@ -1958,6 +1952,7 @@ html body .search-form input[type="text"]:focus-visible {
   border:0px none;
   background:none;
   padding:0px;
+  border-radius: var(--radius);
 }
 
 .wp-block-button__link{

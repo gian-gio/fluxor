@@ -62,7 +62,6 @@
 <?php
 $whatsapp_number = get_option('whatsapp_phone_number', '');
 
-// Verifica che il numero di WhatsApp sia valido
 if (!empty($whatsapp_number)) : 
     $whatsapp_url = 'https://wa.me/' . rawurlencode($whatsapp_number);
     $btn_class = 'btn-whatsapp-visible';
@@ -82,7 +81,7 @@ if (!empty($whatsapp_number)) :
 
 
 
-<?php wp_footer(); // insert scripts by WordPress at at end of the page ?>
+<?php wp_footer(); ?>
 
 </body>
 </html>
