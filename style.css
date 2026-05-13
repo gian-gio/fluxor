@@ -247,7 +247,7 @@ body.scroll-down.home .container-header{
     top: 36px;
     padding:20px;
     min-width: 150px;
-    background:rgba(0,0,0,.7);
+    background:rgba(0,0,0,1);
   }
 
   .header__menu li:hover > ul{
@@ -291,6 +291,34 @@ body.scroll-down.home .container-header{
     right:-18px;
     filter: invert(1);
   }
+
+/* --- Gestione Terzo Livello (e successivi) --- */
+
+  .header__menu li ul li ul {
+      top: 0;           /* Allinea il sottomenu all'altezza della voce corrente */
+      left: 105%;       /* Sposta il menu completamente a destra */
+      margin-top: -19px; /* Compensa l'eventuale padding del contenitore genitore se necessario */
+  }
+
+  .header__menu li ul li.menu-item-has-children > a::after {
+      content: " ";
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Chevron Forward</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>');
+      background-size: 100%;
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -20px; /* Regola in base al padding del tuo design */
+      filter: invert(1);
+  }
+
+  .header__menu li ul li.menu-item-has-children > a::after {
+      /* Sovrascrive il selettore che mette la freccia in basso */
+      display: inline-block;
+  }
+
+
 
   .header__menu a {
     color:var(--color-white);
