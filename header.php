@@ -38,7 +38,22 @@
 
 </div>
 
+
+  <!--Top Bar-->
+  <?php 
+  $topbar_text = get_theme_mod( 'fluxor_topbar_text', '' ); 
+  $topbar_bg   = get_theme_mod( 'fluxor_topbar_bg_color', '#000000' );
+
+  if ( ! empty( $topbar_text ) ) : ?> 
+      <div class="top-bar" style="background-color: <?php echo esc_attr( $topbar_bg ); ?>;">
+          <div class="container">
+              <?php echo wp_kses_post( $topbar_text ); ?>
+          </div>
+      </div>
+  <?php endif; ?>
+
   <header class="container-header">
+
         <div class="header">
 
         <?php

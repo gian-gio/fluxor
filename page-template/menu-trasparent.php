@@ -1,8 +1,9 @@
 <?php /* 
 
-Template Name: Home Template 
+Template Name: Menu Trasparent
 
 */ ?>
+
 
 <?php get_header();  ?>
 

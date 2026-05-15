@@ -38,9 +38,9 @@
 					
 					<!-- wp:buttons -->
 					<div class=\"wp-block-buttons\">
-					<!-- wp:button {\"className\":\"button fade-in scroll\",\"style\":{\"border\":{\"radius\":\"0px\"}},\"fontSize\":\"large\"} -->
+					<!-- wp:button {\"className\":\"button fade-in scroll\",\"style\":{\"fontSize\":\"large\"} -->
 					<div class=\"wp-block-button has-custom-font-size button fade-in scroll has-large-font-size\">
-					<a class=\"wp-block-button__link wp-element-button\" href=\"#\" style=\"border-radius:0px\">Call to action</a>
+					<a class=\"wp-block-button__link wp-element-button\" href=\"#\" >Call to action</a>
 					</div>
 					<!-- /wp:button --></div>
 					<!-- /wp:buttons --></div>

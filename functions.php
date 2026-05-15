@@ -131,19 +131,19 @@ function schema_json_ld_fluxor() {
         $payload = array(
             "@context" => "https://schema.org",
             "@type" => "ProfessionalService",
-            "name" => "Gianluca Giuliano - Web Design & Development",
-            "image" => "https://gianlucagiuliano.it/wp-content/uploads/2025/02/avatar.webp",
-            "@id" => "https://gianlucagiuliano.it",
-            "url" => "https://gianlucagiuliano.it",
-            "telephone" => "",
+            "name" => "Fluxor - Web Design & Development",
+            "image" => "Insert image link",
+            "@id" => "insert your website url",
+            "url" => "insert your website url",
+            "telephone" => " ",
             "priceRange" => "€€",
             "address" => array(
                 "@type" => "PostalAddress",
                 "streetAddress" => " ", 
-                "addressLocality" => "Marano di Napoli",
-                "addressRegion" => "NA",
-                "postalCode" => "80016",
-                "addressCountry" => "IT"
+                "addressLocality" => " ",
+                "addressRegion" => " ",
+                "postalCode" => " ",
+                "addressCountry" => " "
             ),
             "geo" => array(
                 "@type" => "GeoCoordinates",
@@ -157,11 +157,10 @@ function schema_json_ld_fluxor() {
                 "closes" => "19:00"
             ),
             "sameAs" => array(
-                "https://www.linkedin.com/in/gianluca-giuliano", 
-                "https://www.instagram.com/gianlucagiuliano_/",
-				"https://codepen.io/gianluca-giuliano"
+                "https://www.linkedin.com/in/your-account-lk", 
+                "https://www.instagram.com/your-account-ig/"
             ),
-            "description" => "Esperto Web Designer e Sviluppatore WordPress Custom a Napoli. Oltre 15 anni di esperienza e 200+ progetti realizzati con focus su performance e UX."
+            "description" => "Insert your atcivity description"
         );
 
         echo "\n\n";

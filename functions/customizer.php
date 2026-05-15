@@ -71,7 +71,56 @@ add_action('customize_register', 'fluxor_customize_fonts');
 
 
 
-  /* Whatsapp Button
+/* Top bar text
+----------------------------------------------- */
+
+function fluxor_customize_topbar_register($wp_customize) {
+
+    $wp_customize->add_section( 'fluxor_header' , array(
+        'title'      => __( 'Top Bar', 'fluxor' ),
+        'priority'   => 30,
+    ) );
+
+    $wp_customize->add_setting( 'fluxor_topbar_text' , array(
+        'default'           => '',
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+
+    $wp_customize->add_control( 'fluxor_topbar_text_control', array(
+        'label'    => __( 'Top Bar text (e.g. 10% discount)', 'fluxor' ),
+        'section'  => 'fluxor_header',
+        'settings' => 'fluxor_topbar_text',
+        'type'     => 'text'          
+    ));
+
+    $wp_customize->add_setting( 'fluxor_topbar_bg_color', array(
+        'default'           => '#00bcdc',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'fluxor_topbar_bg_color_control', array(
+        'label'    => __( 'Top Bar background color', 'fluxor' ),
+        'section'  => 'fluxor_header',
+        'settings' => 'fluxor_topbar_bg_color',
+    )));
+}
+
+add_action('customize_register', 'fluxor_customize_topbar_register');
+
+
+function fluxor_body_classes( $classes ) {
+    if ( get_theme_mod( 'fluxor_topbar_text', '' ) !== '' ) {
+        $classes[] = 'has-topbar';
+    }
+    return $classes;
+}
+
+add_filter( 'body_class', 'fluxor_body_classes' );
+
+
+/* Whatsapp Button
 -----------------------------------------*/
 
 function fluxor_customize_whatsapp_register($wp_customize) {
