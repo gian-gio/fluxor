@@ -4,25 +4,30 @@ Template Name: Page Reserved
 */
 
 if (!is_user_logged_in()) {
-    wp_redirect(site_url('/login/?redirect_to=' . urlencode(get_permalink()))); // Reindirizza alla tua pagina di login personalizzata
-    exit;
+    wp_redirect(site_url('/login/?redirect_to=' . urlencode(get_permalink()))); 
 }
 
 
-$current_user = wp_get_current_user(); // Recupera i dati dell'utente
+$current_user = wp_get_current_user(); 
 
-$nome = get_user_meta($current_user->ID, 'first_name', true); // Recupera il nome
-$cognome = get_user_meta($current_user->ID, 'last_name', true); // Recupera il cognome
+$nome = get_user_meta($current_user->ID, 'first_name', true); 
+$cognome = get_user_meta($current_user->ID, 'last_name', true); 
 
-if (!$nome) $nome = $current_user->user_login; // Se il nome non è impostato, usa il nome utente
-
+if (!$nome) $nome = $current_user->user_login; 
 
 get_header();
 ?>
 
     <div class="reserved-page" id="primary-content">
         <div class="reserved-page__header">
-            <h4>Ciao, <strong><?php echo esc_html($nome . ' ' . $cognome); ?></strong></h4>
+            <h4>
+                <?php 
+                printf(
+                    esc_html__( 'Hi, %s', 'fluxor' ),
+                    '<strong>' . esc_html( trim( $nome . ' ' . $cognome ) ) . '</strong>'
+                ); 
+                ?>
+            </h4>
             <a href="<?php echo wp_logout_url(home_url()); ?>">Logout</a>
         </div>
 

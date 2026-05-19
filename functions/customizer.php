@@ -1,6 +1,5 @@
 <?php
   
-  
 /* Custom fonts
 ---------------------------------------- */
 
@@ -100,11 +99,25 @@ function fluxor_customize_topbar_register($wp_customize) {
         'transport'         => 'refresh',
     ));
 
+    $wp_customize->add_setting( 'fluxor_topbar_text_color', array(
+        'default'           => '#FFFFFF',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ));
+
+
     $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'fluxor_topbar_bg_color_control', array(
         'label'    => __( 'Top Bar background color', 'fluxor' ),
         'section'  => 'fluxor_header',
         'settings' => 'fluxor_topbar_bg_color',
     )));
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'fluxor_topbar_text_color_control', array(
+        'label'    => __( 'Top Bar text color', 'fluxor' ),
+        'section'  => 'fluxor_header',
+        'settings' => 'fluxor_topbar_text_color',
+    )));
+
 }
 
 add_action('customize_register', 'fluxor_customize_topbar_register');
@@ -118,6 +131,121 @@ function fluxor_body_classes( $classes ) {
 }
 
 add_filter( 'body_class', 'fluxor_body_classes' );
+
+
+/* Colors & Borders Section
+-----------------------------------------*/
+
+function fluxor_customize_colors_borders_register( $wp_customize ) {
+
+    // 1. Delete the old native "Colors" section
+    $wp_customize->remove_section( 'colors' );
+
+    // 2. Create the new "Colors & Border" section
+    $wp_customize->add_section( 'fluxor_colors_borders_section', array(
+        'title'    => __( 'Colors & Borders', 'fluxor' ),
+        'priority' => 30,
+    ) );
+
+    // Mapping array of all your color variables
+    $colors_map = array(
+            'fluxor_color_body'                 => array( 'default' => '#F2F2F2', 'label' => __( 'Body Background Color', 'fluxor' ) ),
+            'fluxor_color_text_default'         => array( 'default' => '#3e3e3e', 'label' => __( 'Font Default Color', 'fluxor' ) ),
+            'fluxor_color_primary'              => array( 'default' => '#00bcdc', 'label' => __( 'Primary Color', 'fluxor' ) ),
+            'fluxor_color_primary_hover'        => array( 'default' => '#019db8', 'label' => __( 'Primary Color Hover', 'fluxor' ) ),
+            'fluxor_color_secondary'            => array( 'default' => '#fa8b4c', 'label' => __( 'Secondary Color', 'fluxor' ) ),
+            'fluxor_color_secondary_hover'      => array( 'default' => '#e49467', 'label' => __( 'Secondary Color Hover', 'fluxor' ) ),
+            'fluxor_color_icon'                 => array( 'default' => '#FFFFFF', 'label' => __( 'Icons Color', 'fluxor' ) ),
+            'fluxor_color_menu'                 => array( 'default' => '#FFFFFF', 'label' => __( 'Menu Link Color', 'fluxor' ) ),
+            'fluxor_color_menu_hover'           => array( 'default' => '#00bcdc', 'label' => __( 'Menu Link Color Hover', 'fluxor' ) ),
+            'fluxor_background_header'          => array( 'default' => '#111111', 'label' => __( 'Header Color Background', 'fluxor' ) ),
+            'fluxor_color_border_menu'          => array( 'default' => '#FFFFFF', 'label' => __( 'Menu Border Color', 'fluxor' ) ),
+            'fluxor_background_item_menu'       => array( 'default' => '#444444', 'label' => __( 'Menu Item Color Background', 'fluxor' ) ),
+            'fluxor_color_text_footer'          => array( 'default' => '#FFFFFF', 'label' => __( 'Footer Color Text', 'fluxor' ) ),
+            'fluxor_color_menu_footer'          => array( 'default' => '#FFFFFF', 'label' => __( 'Footer Menu Color Link', 'fluxor' ) ),
+            'fluxor_color_menu_footer_hover'    => array( 'default' => '#00bcdc', 'label' => __( 'Footer Menu Color Link Hover', 'fluxor' ) ),
+            'fluxor_background_footer'          => array( 'default' => '#111111', 'label' => __( 'Footer Color Background', 'fluxor' ) ),
+            'fluxor_background_copyright_footer'=> array( 'default' => '#00bcdc', 'label' => __( 'Copyright Footer Color Background', 'fluxor' ) ),
+        );
+
+
+    // Cycle for Color Pickers
+    foreach ( $colors_map as $id => $properties ) {
+        $wp_customize->add_setting( $id, array(
+            'default'           => $properties['default'],
+            'sanitize_callback' => 'sanitize_hex_color',
+            'transport'         => 'refresh',
+        ) );
+
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $id, array(
+            'label'    => $properties['label'],
+            'section'  => 'fluxor_colors_borders_section',
+            'settings' => $id,
+        ) ) );
+    }
+
+    // 1. Global Radius
+    $wp_customize->add_setting( 'fluxor_radius', array(
+        'default'           => '10',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'fluxor_radius', array(
+        'type'        => 'number',
+        'label'       => __( 'Global Radius (px)', 'fluxor' ), // Corretto con __()
+        'section'     => 'fluxor_colors_borders_section',
+        'input_attrs' => array( 'min' => 0, 'max' => 50, 'step' => 1 ),
+    ) );
+
+    // 2. Menu Link Radius
+    $wp_customize->add_setting( 'fluxor_radius_menu_link', array(
+        'default'           => '5',
+        'sanitize_callback' => 'absint',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'fluxor_radius_menu_link', array(
+        'type'        => 'number',
+        'label'       => __( 'Menu Link Radius (px)', 'fluxor' ), // Corretto con __()
+        'section'     => 'fluxor_colors_borders_section',
+        'input_attrs' => array( 'min' => 0, 'max' => 50, 'step' => 1 ),
+    ) );
+}
+add_action( 'customize_register', 'fluxor_customize_colors_borders_register' );
+
+
+// Print CSS color and border variables to screen 
+function fluxor_output_colors_css() {
+    ?>
+    <style type="text/css">
+        :root {
+            --color-body: <?php echo esc_attr( get_theme_mod( 'fluxor_color_body', '#F2F2F2' ) ); ?>;
+            --color-text-default: <?php echo esc_attr( get_theme_mod( 'fluxor_color_text_default', '#3e3e3e' ) ); ?>;
+            --color-primary: <?php echo esc_attr( get_theme_mod( 'fluxor_color_primary', '#00bcdc' ) ); ?>;
+            --color-primary-hover: <?php echo esc_attr( get_theme_mod( 'fluxor_color_primary_hover', '#019db8' ) ); ?>;
+            --color-secondary: <?php echo esc_attr( get_theme_mod( 'fluxor_color_secondary', '#fa8b4c' ) ); ?>;
+            --color-secondary-hover: <?php echo esc_attr( get_theme_mod( 'fluxor_color_secondary_hover', '#e49467' ) ); ?>;
+            --color-icon: <?php echo esc_attr( get_theme_mod( 'fluxor_color_icon', '#FFFFFF' ) ); ?>;
+            
+            --color-menu: <?php echo esc_attr( get_theme_mod( 'fluxor_color_menu', '#FFFFFF' ) ); ?>;
+            --color-menu-hover: <?php echo esc_attr( get_theme_mod( 'fluxor_color_menu_hover', '#00bcdc' ) ); ?>;
+            --background-header: <?php echo esc_attr( get_theme_mod( 'fluxor_background_header', '#111111' ) ); ?>;
+            --color-border-menu: <?php echo esc_attr( get_theme_mod( 'fluxor_color_border_menu', '#FFFFFF' ) ); ?>;
+            --background-item-menu: <?php echo esc_attr( get_theme_mod( 'fluxor_background_item_menu', '#444444' ) ); ?>;
+            
+            --color-text-footer: <?php echo esc_attr( get_theme_mod( 'fluxor_color_text_footer', '#FFFFFF' ) ); ?>;
+            --color-menu-footer: <?php echo esc_attr( get_theme_mod( 'fluxor_color_menu_footer', '#FFFFFF' ) ); ?>;
+            --color-menu-footer-hover: <?php echo esc_attr( get_theme_mod( 'fluxor_color_menu_footer_hover', '#00bcdc' ) ); ?>;
+            --background-footer: <?php echo esc_attr( get_theme_mod( 'fluxor_background_footer', '#111111' ) ); ?>;
+            --background-copyright-footer: <?php echo esc_attr( get_theme_mod( 'fluxor_background_copyright_footer', '#00bcdc' ) ); ?>;
+            
+            --radius: <?php echo esc_attr( get_theme_mod( 'fluxor_radius', '10' ) ); ?>px;
+            --radius-menu-link: <?php echo esc_attr( get_theme_mod( 'fluxor_radius_menu_link', '5' ) ); ?>px;
+        }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'fluxor_output_colors_css' );
+
 
 
 /* Whatsapp Button
@@ -154,7 +282,7 @@ add_action('customize_register', 'fluxor_customize_whatsapp_register');
 
 
 
-/*  Latest Posts shortcode
+/* Latest Posts shortcode
 /* ------------------------------------ */
 
 
@@ -201,8 +329,8 @@ function fluxor_last_post_shortcode($atts) {
         // Reset original posts
         wp_reset_postdata();
     } else {
-        // No find article 
-        $output .= '<div class="last-post"><p>Nessun articolo trovato.</p></div>';
+        // Corretto testo statico stringa con localizzazione __()
+        $output .= '<div class="last-post"><p>' . __( 'No posts found.', 'fluxor' ) . '</p></div>';
     }
   
     return $output;
@@ -285,7 +413,7 @@ add_action('admin_init', 'fluxor_admin_page_block');
       $config = array(
           'id'           => 'fluxor', // Theme ID
           'default_path' => '', // Leave blank to avoid conflicts
-          'menu'         => 'Install plugins', // Admin menu name
+          'menu'         => __( 'Install Required Plugins', 'fluxor' ), // Corretto stringa menu nativa admin
           'parent_slug'  => 'themes.php', // Parent menu slug
           'capability'   => 'edit_theme_options', // Permissions required
           'has_notices'  => true, // Show notifications in backend
@@ -297,18 +425,3 @@ add_action('admin_init', 'fluxor_admin_page_block');
   }
 
   add_action( 'tgmpa_register', 'fluxor_register_required_plugins' );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

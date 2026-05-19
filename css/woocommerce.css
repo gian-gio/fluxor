@@ -56,7 +56,13 @@
 
 .account-item i{
   font-size: 1rem;
+  color: var(--color-icon);
 }
+
+.account-item i:hover{
+  color: var(--color-icon);
+}
+
 
 .cart-item a{
   display: flex;
@@ -66,6 +72,11 @@
 .cart-item i{
   font-size: 1rem;
   padding-right: 5px;
+  color: var(--color-icon);
+}
+
+.cart-item i:hover{
+  color: var(--color-icon);
 }
 
 

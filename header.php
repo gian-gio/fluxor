@@ -43,9 +43,10 @@
   <?php 
   $topbar_text = get_theme_mod( 'fluxor_topbar_text', '' ); 
   $topbar_bg   = get_theme_mod( 'fluxor_topbar_bg_color', '#000000' );
+  $topbar_text_color   = get_theme_mod( 'fluxor_topbar_text_color', '#000000' );
 
   if ( ! empty( $topbar_text ) ) : ?> 
-      <div class="top-bar" style="background-color: <?php echo esc_attr( $topbar_bg ); ?>;">
+      <div class="top-bar" style="background-color: <?php echo esc_attr( $topbar_bg );?>; color: <?php echo esc_attr( $topbar_text_color ); ?>">
           <div class="container">
               <?php echo wp_kses_post( $topbar_text ); ?>
           </div>

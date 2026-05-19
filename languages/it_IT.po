@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 10:04+0000\n"
-"PO-Revision-Date: 2025-11-07 10:42+0000\n"
+"POT-Creation-Date: 2026-05-19 08:37+0000\n"
+"PO-Revision-Date: 2026-05-19 13:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.3; php-8.2.27\n"
+"X-Loco-Version: 2.8.4; wp-6.9.4; php-8.2.27\n"
 "X-Domain: fluxor"
 
 #: index.php:62
@@ -25,31 +25,30 @@ msgstr ""
 
 #: 404.php:10
 msgid "404 Error"
-msgstr ""
+msgstr "Errore 404"
 
 #. Description of the theme
 msgid ""
 "A flexible and lightweight WordPress theme for blogs, portfolios, business "
 "sites, and WooCommerce stores. Fully responsive and easy to customize."
 msgstr ""
-
-#: woocommerce/loop/add-to-cart.php:30
-msgid "Add to cart"
-msgstr "Aggiungi al carrello"
+"Tema WordPress flessibile e leggero per blog, portfolio, siti aziendali e "
+"negozi WooCommerce. Completamente responsive e facile da personalizzare."
 
 #: single.php:36
 msgid "Back"
-msgstr ""
+msgstr "Torna indietro"
 
-#: functions/patterns.php:906
+#: functions/patterns.php:871
 msgctxt "Block pattern description"
 msgid " Three-column contact block with text and link icons"
 msgstr ""
 
-#: functions/patterns.php:577
+#: functions/patterns.php:542
 msgctxt "Block pattern description"
 msgid "A testimonials section with, photo, name, text and valuation."
 msgstr ""
+"Una sezione dedicata alle testimonianze, con foto, nome, testo e valutazione."
 
 #: functions/patterns.php:259
 msgctxt "Block pattern description"
@@ -58,28 +57,26 @@ msgid ""
 "profile image, name, job title, short description, social link and detail "
 "button."
 msgstr ""
+"Box a quattro colonne ideale per la sezione \"Il nostro team\", ogni colonna "
+"include l'immagine del profilo, il nome, la qualifica, una breve descrizione,"
+" il link ai social media e il pulsante per visualizzare i dettagli."
 
 #: functions/patterns.php:8
 msgctxt "Block pattern description"
 msgid "Hero section with button, title and description."
-msgstr ""
+msgstr "Hero section con pulsante, titolo e descrizione."
 
 #: functions/patterns.php:63
 msgctxt "Block pattern description"
 msgid "Last three article blog"
-msgstr ""
-
-#: functions/patterns.php:542
-msgctxt "Block pattern description"
-msgid "Logo slider with destination url."
-msgstr ""
+msgstr "Ultimi tre articoli del blog"
 
 #: functions/patterns.php:484
 msgctxt "Block pattern description"
 msgid "Media text with 2 blocks with alternating image text positions."
 msgstr ""
 
-#: functions/patterns.php:784
+#: functions/patterns.php:749
 msgctxt "Block pattern description"
 msgid "Two column accordion block"
 msgstr ""
@@ -91,62 +88,66 @@ msgid ""
 "column there are 4 blocks with icons and text"
 msgstr ""
 
-#: functions/patterns.php:749
+#: functions/patterns.php:714
 msgctxt "Block pattern description"
 msgid "YouTube video block with title"
-msgstr ""
+msgstr "Blocco video di YouTube con titolo"
 
 #: index.php:20
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
+
+#: functions/customizer.php:152
+msgid "Body Background Color"
+msgstr "Colore di sfondo del sito"
 
 #: woocommerce/single-product.php:58
 msgid "Brands:"
-msgstr ""
+msgstr "Marchi:"
 
-#: woocommerce/loop/add-to-cart.php:48
-msgid "Buy now"
-msgstr "Acquista ora"
-
-#: footer.php:71 footer.php:73
+#: footer.php:73 footer.php:75
 msgid "Chat with us on WhatsApp"
-msgstr ""
+msgstr "Chatta con noi su WhatsApp"
 
 #. Name of the template
 #: woocommerce/page-checkout.php:1
 msgid "Checkout Page"
-msgstr ""
+msgstr "Pagina di pagamento"
 
-#: woocommerce/loop/add-to-cart.php:35
-msgid "Choose options"
-msgstr "Seleziona opzioni"
+#: functions/customizer.php:146
+msgid "Colors & Borders"
+msgstr "Colori e Bordi"
 
-#: functions/customizer.php:81
+#: functions/customizer.php:258
 msgid "Configure the WhatsApp button settings."
-msgstr ""
+msgstr "Configura le impostazioni del pulsante WhatsApp."
+
+#: functions/customizer.php:168
+msgid "Copyright Footer Color Background"
+msgstr "Colore sfondo Copyright Footer"
 
 #. Name of the template
 #: woocommerce/page-cart.php:1
 msgid "Custom Cart Page"
-msgstr ""
+msgstr "Pagina del carrello personalizzata"
 
-#: functions.php:172
+#: functions.php:303
 msgid "Default Logo"
-msgstr ""
+msgstr "Logo predefinito"
 
-#: functions/customizer.php:99
+#: functions/customizer.php:276
 msgid "Enter your WhatsApp phone number (ex: 3912345678)."
-msgstr ""
+msgstr "Inserisci il tuo numero di telefono WhatsApp (es: 3912345678)."
 
 #. Name of the theme
 msgid "Fluxor"
 msgstr ""
 
-#: functions/patterns.php:783
+#: functions/patterns.php:748
 msgid "fluxor - Accordion"
 msgstr ""
 
-#: functions/patterns.php:905
+#: functions/patterns.php:870
 msgid "fluxor - Contact block"
 msgstr ""
 
@@ -162,10 +163,6 @@ msgstr ""
 msgid "fluxor - Last three article"
 msgstr ""
 
-#: functions/patterns.php:541
-msgid "fluxor - Logo Slider"
-msgstr ""
-
 #: functions/patterns.php:483
 msgid "fluxor - Media Text"
 msgstr ""
@@ -174,146 +171,267 @@ msgstr ""
 msgid "fluxor - Our Team"
 msgstr ""
 
-#: functions/patterns.php:576
+#: functions/patterns.php:541
 msgid "fluxor - Testimonials"
 msgstr ""
 
-#: functions/patterns.php:748
+#: functions/patterns.php:713
 msgid "fluxor - Video block"
 msgstr ""
 
-#: functions/customizer.php:36
-msgid "Font Weight (ex. 300,400,700 )"
-msgstr ""
+#: functions/customizer.php:153
+msgid "Font Default Color"
+msgstr "Colore predefinito del font"
 
-#: functions.php:186
+#: functions/customizer.php:35
+msgid "Font Weight (ex. 300,400,700 )"
+msgstr "Spessore del carattere (es. 300, 400, 700)"
+
+#: functions/customizer.php:167
+msgid "Footer Color Background"
+msgstr "Colore di sfondo del footer"
+
+#: functions/customizer.php:164
+msgid "Footer Color Text"
+msgstr "Colore testi del footer"
+
+#: functions.php:317
 msgid "Footer Logo"
 msgstr ""
 
-#: functions.php:44
+#: functions.php:98
 msgid "Footer Menu"
 msgstr ""
+
+#: functions/customizer.php:165
+msgid "Footer Menu Color Link"
+msgstr "Colore link del footer"
+
+#: functions/customizer.php:166
+msgid "Footer Menu Color Link Hover"
+msgstr "Colore link del footer al passaggio del mouse"
 
 #. Author of the theme
 msgid "Gianluca Giuliano"
 msgstr ""
 
-#: functions/customizer.php:50
+#: functions/customizer.php:195
+msgid "Global Radius (px)"
+msgstr "Border Radius globale "
+
+#: functions/customizer.php:49
 msgid "Google Font Body (ex. Open Sans )"
-msgstr ""
+msgstr "Google Font Body (ex. Open Sans )"
 
-#: functions/customizer.php:22
+#: functions/customizer.php:21
 msgid "Google Font Headings (ex. Open Sans )"
-msgstr ""
+msgstr "Google Font Titoli (ex. Open Sans )"
 
-#: functions.php:42
+#: functions.php:96
 msgid "Header"
 msgstr ""
 
-#. Name of the template
-#: page-template/home-template.php:1
-msgid "Home Template"
-msgstr ""
+#: functions/customizer.php:161
+msgid "Header Color Background"
+msgstr "Colore di sfondo dell'header"
+
+#: page-template/page-reserved.php:26
+#, php-format
+msgid "Hi, %s"
+msgstr "Ciao, %s"
+
+#: functions/customizer.php:158
+msgid "Icons Color"
+msgstr "Colore Icone"
+
+#: functions/customizer.php:416
+msgid "Install Required Plugins"
+msgstr "Installa i plugin necessari"
 
 #. Name of the template
 #: page-template/landing-page-template.php:1
 msgid "Landing Page Template"
 msgstr ""
 
-#. Name of the template
-#: page-template/page-login.php:2
-msgid "Login"
-msgstr ""
-
-#: functions.php:164
+#: functions.php:295
 msgid "Logo"
 msgstr ""
 
-#: functions.php:166
+#: functions.php:297
 msgid "Manage the site logo and additional logo options."
 msgstr ""
 
-#: functions.php:125
-msgid "Mostra icona carrello nel menu"
-msgstr ""
+#: functions/customizer.php:162
+msgid "Menu Border Color"
+msgstr "Colore bordo del menu"
+
+#: functions/customizer.php:163
+msgid "Menu Item Color Background"
+msgstr "Colore di sfondo elementi del sottomenu"
+
+#: functions/customizer.php:159
+msgid "Menu Link Color"
+msgstr "Colore link menu"
+
+#: functions/customizer.php:160
+msgid "Menu Link Color Hover"
+msgstr "Colore link menu al passaggio del mouse"
+
+#: functions/customizer.php:208
+msgid "Menu Link Radius (px)"
+msgstr "Border radius link sottomenu"
+
+#. Name of the template
+#: page-template/menu-trasparent.php:1
+msgid "Menu Trasparent"
+msgstr "Menu Trasparente"
 
 #. Name of the template
 #: woocommerce/page-my-account.php:2
 msgid "My Account Page"
-msgstr ""
+msgstr "La pagina del mio account"
 
-#: woocommerce/archive-product.php:111
+#: woocommerce/archive-product.php:144
 msgid "Nessun prodotto trovato"
-msgstr ""
+msgstr "Nessun prodotto trovato"
 
 #: index.php:73
 msgid "No articles found: "
-msgstr ""
+msgstr "Nessun prodotto trovato"
 
-#: woocommerce/content-product.php:22 woocommerce/loop/add-to-cart.php:41
+#. Name of the template
+#: page-template/page-no-head.php:3
+msgid "No Head Page"
+msgstr "Pagine senza testata"
+
+#: functions/customizer.php:333
+msgid "No posts found."
+msgstr "Nessun post trovato."
+
+#: woocommerce/content-product.php:22
 msgid "Not available"
-msgstr ""
+msgstr "Non disponibile"
 
 #: woocommerce/content-product.php:18
 msgid "On sale"
-msgstr ""
+msgstr "In offerta"
 
 #: 404.php:9
 msgid "Oops! That page can't be found."
-msgstr ""
+msgstr "Ops! La pagina non è stata trovata."
+
+#. Name of the template
+#: page-template/page-login.php:2
+msgid "Page Login"
+msgstr "Pagina di login"
 
 #. Name of the template
 #: page-template/page-reserved.php:2
-msgid "Pagina Riservata"
-msgstr ""
+msgid "Page Reserved"
+msgstr "Pagina riservata"
 
-#: functions.php:43
+#: functions/customizer.php:154
+msgid "Primary Color"
+msgstr "Colore primario"
+
+#: functions/customizer.php:155
+msgid "Primary Color Hover"
+msgstr "Colore primario al passaggio del mouse"
+
+#: functions.php:97
 msgid "Quick Menu"
-msgstr ""
+msgstr "Menu rapido"
 
 #: index.php:12
 msgid "Results for: "
-msgstr ""
+msgstr "Risultati per:"
 
-#: header.php:21
+#: header.php:29
+msgid "Run search"
+msgstr "Avvia ricerca"
+
+#: header.php:26
 msgid "Search in the site"
-msgstr ""
+msgstr "Cerca nel sito"
 
-#: header.php:23
+#: header.php:28
 msgid "search..."
-msgstr ""
+msgstr "cerca..."
 
-#: page.php:48 single.php:30 page-template/home-template.php:29
-#: page-template/landing-page-template.php:31
+#: functions/customizer.php:156
+msgid "Secondary Color"
+msgstr "Colore secondario"
+
+#: functions/customizer.php:157
+msgid "Secondary Color Hover"
+msgstr "Colore secondario al passaggio del mouse"
+
+#: functions.php:239
+msgid "Show cart icon in menu"
+msgstr "Mostra l'icona carrello nel menu"
+
+#: header.php:17
+msgid "Skip to content"
+msgstr "Salta il contenuto"
+
+#: page.php:48 single.php:30 page-template/landing-page-template.php:31
+#: page-template/menu-trasparent.php:31 page-template/page-no-head.php:44
 msgid "Sorry, no posts matched your criteria."
+msgstr "Spiacenti, nessun post corrisponde ai criteri di ricerca."
+
+#: functions.php:119
+#, php-format
+msgid ""
+"The file is too large! The maximum allowed size is %s. Optimize it before "
+"uploading."
 msgstr ""
+"Il file è troppo grande! La dimensione massima consentita è %s. Ottimizzalo "
+"prima di caricarlo."
 
 #: 404.php:11
 msgid ""
 "The page you are trying to reach does not exist, or has been moved. Please "
 "use the menus or the search box to find what you are looking for."
 msgstr ""
+"La pagina che stai cercando di raggiungere non esiste o è stata spostata. "
+"Utilizza i menu o la casella di ricerca per trovare ciò che stai cercando."
 
-#: functions/customizer.php:10
+#: functions/customizer.php:79
+msgid "Top Bar"
+msgstr ""
+
+#: functions/customizer.php:110
+msgid "Top Bar background color"
+msgstr "Colore di sfondo della Top Bar"
+
+#: functions/customizer.php:90
+msgid "Top Bar text (e.g. 10% discount)"
+msgstr "Testo della Top Bar (es. Sconto del 10%)"
+
+#: functions/customizer.php:116
+msgid "Top Bar text color"
+msgstr "Colore del testo della Top Bar"
+
+#: functions/customizer.php:9
 msgid "Typography"
-msgstr ""
+msgstr "Tipografia"
 
-#: functions.php:173
+#: functions.php:304
 msgid "Upload a default logo to be used in the header site."
-msgstr ""
+msgstr "Carica un logo predefinito da utilizzare nell'intestazione del sito."
 
-#: functions.php:187
+#: functions.php:318
 msgid "Upload a logo to be used in the footer."
-msgstr ""
+msgstr "Carica un logo da utilizzare nel footer."
 
-#: functions/customizer.php:95
+#: functions/customizer.php:272
 msgid "WhatsApp Phone Number"
-msgstr ""
+msgstr "Numero di Telefono Whatsapp"
 
-#: functions/customizer.php:80
+#: functions/customizer.php:257
 msgid "WhatsApp Settings"
-msgstr ""
+msgstr "Impostazioni Whatsapp"
 
-#: functions.php:111
+#: functions.php:225
 msgid "WooCommerce Settings"
-msgstr ""
+msgstr "Impostazioni WooCommerce"

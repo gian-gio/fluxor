@@ -48,7 +48,16 @@
 
 </div>
 
+<div class="col-xl-70 col-md-70 col-sm-100">
+  <?php
+    if ( comments_open() || get_comments_number() ) :
+        comments_template();
+    endif;
+  ?>
 </div>
+
+</div>
+
 
 <div class="spacer"></div>
 

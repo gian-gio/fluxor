@@ -8,7 +8,7 @@
  */
 
 
-/*  Theme setup
+/* Theme setup
 /* ------------------------------------ */
 
 function fluxor_setup() {
@@ -60,21 +60,7 @@ function fluxor_setup() {
     return $attr;
     }, 10 );
 
-    // Limit the maximum size of uploaded files (e.g. 2MB)
-    add_filter( 'wp_handle_upload_prefilter', 'fluxor_limit_upload_size' );
-    function fluxor_limit_upload_size( $file ) {
-        $size = $file['size']; // Size in bytes
-        $limit = 2 * 1024 * 1024; // 2 Megabyte
-        $limit_text = '2MB';
-
-        if ( $size > $limit ) {
-            $file['error'] = "The file is too large! The maximum allowed size is $limit_text. Optimize it before uploading.";
-        }
-
-        return $file;
-    }
-
-    // Forza la soglia massima a 2560px (standard 4K)
+    // Force maximum threshold to 2560px (4K standard)
     add_filter( 'big_image_size_threshold', function() {
         return 2560; 
     });
@@ -99,6 +85,8 @@ function fluxor_setup() {
         return $upload;
     });
 
+    // Diciamo a WordPress di usare la funzione, ma la funzione la dichiariamo FUORI da qui.
+    add_filter( 'wp_handle_upload_prefilter', 'fluxor_limit_upload_size' );
 
     // Enable page excerpts
     add_post_type_support('page', 'excerpt');
@@ -115,12 +103,24 @@ function fluxor_setup() {
     //add_theme_support('wc-product-gallery-zoom');
     //add_theme_support('wc-product-gallery-slider');
 
-  // block pattern
-  require_once( get_template_directory() . '/functions/patterns.php' );
+    // block pattern
+    require_once( get_template_directory() . '/functions/patterns.php' );
 
 }
-
 add_action('after_setup_theme', 'fluxor_setup');
+
+
+function fluxor_limit_upload_size( $file ) {
+    $size = $file['size']; // Size in bytes
+    $limit = 2 * 1024 * 1024; // 2 Megabyte
+    $limit_text = '2MB';
+
+    if ( $size > $limit ) {
+        $file['error'] = sprintf( __( 'The file is too large! The maximum allowed size is %s. Optimize it before uploading.', 'fluxor' ), $limit_text );
+    }
+
+    return $file;
+}
 
 
 
@@ -160,7 +160,7 @@ function schema_json_ld_fluxor() {
                 "https://www.linkedin.com/in/your-account-lk", 
                 "https://www.instagram.com/your-account-ig/"
             ),
-            "description" => "Insert your atcivity description"
+            "description" => "Insert your activity description"
         );
 
         echo "\n\n";
@@ -236,7 +236,7 @@ function fluxor_customize_register($wp_customize) {
   $wp_customize->add_control('fluxor_show_cart', array(
       'type'     => 'checkbox',
       'section'  => 'fluxor_woocommerce_section',
-      'label'    => __('Mostra icona carrello nel menu', 'fluxor'),
+      'label'    => __('Show cart icon in menu', 'fluxor'),
   ));
 }
 
@@ -312,7 +312,7 @@ function fluxor_customize_logo_section($wp_customize) {
 
     $wp_customize->add_control(new WP_Customize_Image_Control(
         $wp_customize,
-        'footer_logo',
+        'footer_logo', // CORRETTO: adesso è una stringa identificativa tra apici, non una variabile vuota
         array(
             'label'       => __('Footer Logo', 'fluxor'),
             'description' => __('Upload a logo to be used in the footer.', 'fluxor'),
@@ -401,20 +401,20 @@ if ( ! function_exists( 'fluxor_login_logo_title' ) ) {
     function fluxor_login_logo_title() {
         return get_bloginfo('name');
     }
-    add_filter( 'login_headertitle', 'fluxor_login_logo_title' );
+    // Modificato da login_headertitle a login_headertext (perché deprecato in WP)
+    add_filter( 'login_headertext', 'fluxor_login_logo_title' );
 }
 
 
 
 
-/*  Enqueue javascript
+/* Enqueue javascript
 /* ------------------------------------------------------------------------------ */
 
   function fluxor_scripts() {
 
     wp_enqueue_script('fluxor-gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), null, true);
     wp_enqueue_script('fluxor-gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', array(), null, true);
-    wp_enqueue_script('fluxor-splide-js', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js', array(), null, true);
     wp_enqueue_script('fluxor-scripts', get_template_directory_uri() . '/js/scripts.js','','', true );
 
   }
@@ -423,7 +423,7 @@ add_action( 'wp_enqueue_scripts', 'fluxor_scripts' );
 
 
 
-/*  Enqueue style
+/* Enqueue style
 /* ------------------------------------------------------------------------------ */
 
 function fluxor_styles() {
@@ -441,11 +441,11 @@ function fluxor_styles() {
   }
   
   // Load CSS files
-	wp_enqueue_style( 'boxicons-style', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
-	wp_enqueue_style( 'lineawesome-style', 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css');
-	wp_enqueue_style( 'splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css');
-	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri().'/css/woocommerce.css');
-	wp_enqueue_style( 'simple-style', get_template_directory_uri().'/style.css');
+    wp_enqueue_style( 'boxicons-style', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+    wp_enqueue_style( 'lineawesome-style', 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css');
+    wp_enqueue_style( 'woocommerce-style', get_template_directory_uri().'/css/woocommerce.css');
+    wp_enqueue_style( 'simple-style', get_template_directory_uri().'/style.css');
+    wp_enqueue_style( 'custom-style', get_template_directory_uri().'/css/custom_style.css');
 
 }
 
@@ -536,5 +536,3 @@ function fluxor_add_font_display_swap($tag, $handle) {
 if (file_exists(get_template_directory() . '/functions/customizer.php')) {
   require_once(get_template_directory() . '/functions/customizer.php');
 }
-
-

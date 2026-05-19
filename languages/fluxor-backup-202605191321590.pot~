@@ -109,6 +109,11 @@ msgstr ""
 msgid "Checkout Page"
 msgstr ""
 
+#: page-template/page-reserved.php:26
+#, php-format
+msgid "Ciao, %s"
+msgstr ""
+
 #: functions/customizer.php:146
 msgid "Colors & Borders"
 msgstr ""
@@ -228,11 +233,6 @@ msgstr ""
 
 #: functions/customizer.php:161
 msgid "Header Color Background"
-msgstr ""
-
-#: page-template/page-reserved.php:26
-#, php-format
-msgid "Hi, %s"
 msgstr ""
 
 #: functions/customizer.php:158

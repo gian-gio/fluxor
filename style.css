@@ -36,13 +36,6 @@ Use it to make something cool, have fun, and share what you've learned with othe
   --font-extra-bold: 800;
   --font-black: 900;
   
-  --color-body: #F2F2F2;
-  --color-text-default: #3e3e3e;
-  --color-primary: #00bcdc;
-  --color-primary-hover:#019db8;
-  --color-secondary: #fa8b4c;
-  --color-secondary-hover:#e49467;
-
   --color-white:#FFFFFF;
   --color-grey: #555555;
   --color-grey-light: #CCCCCC;
@@ -51,22 +44,6 @@ Use it to make something cool, have fun, and share what you've learned with othe
   --color-orange: #fa8b4c;
   --color-dark:#111111;
 
-  --color-menu:#FFFFFF;
-  --color-menu-hover:#00bcdc;
-
-  --background-header:#111111;
-
-
-  --color-text-footer:#FFFFFF;
-  --color-menu-footer:#FFFFFF;
-  --color-menu-footer-hover:#00bcdc;
-
-  --background-footer:#111111;
-  --background-copyright-footer:#00bcdc ;
-
-
-  --radius: 10px;
-  --radius-link: 5px;
 }
 
 
@@ -113,7 +90,6 @@ a:active{color: var(--color-primary);}
 
 
 
-
 /* ! Title System
 -----------------------------------------------------*/
 h1{font-size: 4rem;}
@@ -122,7 +98,6 @@ h3{font-size: 2rem;}
 h4{font-size: 1rem;}
 h5{font-size: 0.8rem;}
 h6{font-size: 0.6rem;}
-
 
 
 
@@ -169,7 +144,6 @@ h6{font-size: 0.6rem;}
   align-items: center;
   justify-content: center;
   padding: 0 15px;
-  color:var(--color-white); 
   text-align: center;
   font-size: 0.8rem;
   font-weight: var(--font-medium);
@@ -302,7 +276,7 @@ body.scroll-down.home .container-header{
   max-width: 280px; 
   width: max-content; 
   background: rgba(0,0,0,1);
-  border: 1px solid var(--color-white);
+  border: 1px solid var(--color-border-menu);
   border-radius: var(--radius);
   z-index: 99;
 }
@@ -326,8 +300,8 @@ body.scroll-down.home .container-header{
 }
 
 .header__menu li ul li:hover{
-  background: var(--color-grey);
-  border-radius: var(--radius-link);
+  background: var(--background-item-menu);
+  border-radius: var(--radius-menu-link);
 }
 
 
@@ -832,108 +806,157 @@ body.scroll-down.home .container-header{
 }
 
 
-.icon-dribbble a:before{
-  background: url(icons/logo-dribbble.svg) no-repeat center center;
+
+.icon-dribbble a:before {
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-dribbble.svg') no-repeat center center / contain;
+  mask: url('icons/logo-dribbble.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-instagram a:before{
-  background: url(icons/logo-instagram.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-instagram.svg') no-repeat center center / contain;
+  mask: url('icons/logo-instagram.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-linkedin a:before{
-  background: url(icons/logo-linkedin.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-linkedin.svg') no-repeat center center / contain;
+  mask: url('icons/logo-linkedin.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-facebook a:before{
-  background: url(icons/logo-facebook.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-facebook.svg') no-repeat center center / contain;
+  mask: url('icons/logo-facebook.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-github a:before{
-  background: url(icons/logo-github.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-github.svg') no-repeat center center / contain;
+  mask: url('icons/logo-github.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-tiktok a:before{
-  background: url(icons/logo-tiktok.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-tiktok.svg') no-repeat center center / contain;
+  mask: url('icons/logo-tiktok.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-x a:before{
-  background: url(icons/logo-x.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-x.svg') no-repeat center center / contain;
+  mask: url('icons/logo-x.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 .icon-youtube a:before{
-  background: url(icons/logo-youtube.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/logo-youtube.svg') no-repeat center center / contain;
+  mask: url('icons/logo-youtube.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 /* ! Search panel */
@@ -1028,16 +1051,22 @@ html body .search-form input[type="text"]:focus-visible {
 }
 
 .icon-search a:before{
-  background: url(icons/search-outline.svg) no-repeat center center;
   content: " ";
-  width: 15px;
-  height: 15px;
-  text-indent: 0;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-size: 100%;
-  filter: invert(1);
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-icon); 
+  transition: background-color .3s cubic-bezier(.215, .61, .355, 1);
+  -webkit-mask: url('icons/search-outline.svg') no-repeat center center / contain;
+  mask: url('icons/search-outline.svg') no-repeat center center / contain;  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-position: center center;
 }
 
 
@@ -1901,6 +1930,7 @@ html body .search-form input[type="text"]:focus-visible {
 }
 
 .search-widget label{
+  font-weight: var(--font-semi-bold)!important;
   font-size: 0.9rem;
 }
 
@@ -1911,6 +1941,7 @@ html body .search-form input[type="text"]:focus-visible {
   border-radius: var(--radius);
   outline: none;
   font-family: var(--font-default);
+  padding: 0 10px;
 }
 
 .search-widget button{
@@ -2022,6 +2053,258 @@ html body .search-form input[type="text"]:focus-visible {
 .alignfull{width: 100vw;margin-left: calc(50% - 50vw);}
 .alignwide{width: 90vw;margin-left: calc(50% - 45vw);}
 
+
+
+/* ! Commments */
+/* --------------------------------------------------------- */
+
+#comments{
+  font-size: 1.4rem;
+  margin: 30px 0;
+}
+
+.commentlist{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments-area {
+    max-width: 800px; /* Mantiene la lettura fluida ed evita righe troppo lunghe */
+}
+
+.comments-title {
+    font-size: 1.2rem;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem 0;
+}
+
+.comment-list .comment {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px dashed #DDD;
+}
+
+.comment-list .comment:last-child {
+    border-bottom: none;
+}
+
+.comment-body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.comment-meta {
+    grid-column: 2;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author .avatar {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    border-radius: 0px; 
+    border: 1px solid #DDD;
+    background: #fff;
+    padding: 2px;
+}
+
+.comment-author .fn {
+    font-weight: 700;
+}
+
+.comment-metadata {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.comment-metadata a {
+    color:var(--color-text-default);
+    text-decoration: none;
+}
+
+.comment-metadata a:hover {
+    color: var(--color-primary-hover) 
+  }
+
+/* Contenuto del testo del commento */
+.comment-content {
+    grid-column: 2;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.comment-content p {
+    margin: 0 0 1rem;
+}
+
+.comment-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Link di risposta */
+.reply {
+    grid-column: 2;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.reply a {
+    color:var(--color-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.reply a:hover {
+    color:var(--color-primary-hover);
+}
+
+.comment-list .children {
+    list-style: none;
+    padding-left: 3rem; /* Sposta a destra i commenti di risposta */
+    margin-top: 2rem;
+    border-left: 2px solid #EEEEEE;
+}
+
+.comment-respond {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top:1px solid var(--color-grey-light);
+}
+
+.comment-reply-title {
+    font-size: 1.3rem;
+    font-weight: var(--font-bold);
+    margin-bottom: 15px;
+}
+
+.comment-reply-title a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    float: right;
+    color:var(--color-primary);
+    text-decoration: none;
+}
+
+.comment-form p{
+  margin-bottom: 15px;
+}
+
+
+/* Campi Autore, Email e Sito web affiancati su schermi grandi */
+  .comment-form-author, 
+  .comment-form-email, 
+  .comment-form-url {
+    display:inline-block!important;
+    width: 33%!important;
+  }
+  .comment-form-url {
+      margin-right: 0;
+  }
+
+  .comment-form label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+  }
+
+  /* Input di testo e Textarea - Stile squadrato speculare al login */
+  .comment-form input[type="text"],
+  .comment-form input[type="email"],
+  .comment-form input[type="url"],
+  .comment-form textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid #DDD;
+      border-radius: var(--radius);
+      background-color: #fff;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+  }
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+    border-color:var(--color-primary);
+    outline: none;
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+@media (max-width: 768px) {
+
+
+    .comment-form-author, 
+    .comment-form-email, 
+    .comment-form-url {
+      width:100%!important;
+    }
+  
+}
+
+
+/* Checkbox per il salvataggio dei cookie */
+.comment-form-cookies-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.comment-form-cookies-consent input[type="checkbox"] {
+    margin-top: 0.25rem;
+}
+
+.comment-form-cookies-consent label {
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Bottone di invio - Squadrato e compatto */
+.comment-form .form-submit {
+    margin-bottom: 0;
+}
+
+.comment-form input[type="submit"] {
+    color:var(--color-white)!important;
+    border: 0px;
+    border-radius:var(--radius)!important;
+    padding:10px 20px!important;
+    font-size: 0.8rem!important;
+    font-weight: var(--font-medium)!important;
+    text-transform: uppercase;
+    letter-spacing: 2px!important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: var(--color-primary);
+    font-family: var(--font-default);
+}
+
+.comment-form input[type="submit"]:hover{
+  background-color: var(--color-primary-hover)!important;
+}
+
+
+.no-comments {
+    text-align: center;
+    padding: 1rem;
+    background: #EEEEEE;
+    color: #666;
+    font-size: 0.9rem;
+}
 
 
 /* ! Animation */
@@ -2266,31 +2549,9 @@ html body .search-form input[type="text"]:focus-visible {
 
 
 
-/* !  Splide Slider*/
-/* -------------------------------------------------------------------------------- */
-
-.splide__slide{
-  width: 100%;
-  margin: 0 15px;
-}
-
-.splide__arrow{
-  background: none!important;
-}
-
-.splide__arrow svg{
-  width: 80px!important;
-  height: 80px!important;
-  fill: var(--color-primary)!important;
-  stroke:  var(--color-primary)!important;
-}
-
-
 /* !  Custom login form*/
 /* -------------------------------------------------------------------------------- */
 
-
-/* Contenitore del form */
 
 .container-login{
   width: 100%;
@@ -2310,7 +2571,6 @@ html body .search-form input[type="text"]:focus-visible {
   box-shadow: 0px none;
 }
 
-/* Campi di input */
 #custom_login_form input {
   width: 100%;
   height: 45px;
@@ -2321,7 +2581,6 @@ html body .search-form input[type="text"]:focus-visible {
   outline: none;
 }
 
-/* Pulsante di login */
 #custom_login_form input[type="submit"] {
   background:var(--color-primary);
   color: white;
@@ -2338,14 +2597,12 @@ html body .search-form input[type="text"]:focus-visible {
 }
 
 
-/* Checkbox "Ricordami" */
 #custom_login_form label {
   font-size:0.9rem;
   display: block;
   margin-top: 10px;
 }
 
-/* Link di registrazione e password dimenticata */
 #custom_login_form a {
   display: block;
   text-align: center;

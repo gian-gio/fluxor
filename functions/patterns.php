@@ -534,41 +534,6 @@
 		);
 		
 
-		// Logo Slider
-		register_block_pattern(
-			'Fluxor/fluxor-logo-slider',
-			array(
-					'title'       => __( 'fluxor - Logo Slider', 'fluxor' ),
-					'description' => _x( 'Logo slider with destination url.', 'Block pattern description', 'fluxor' ),
-					'categories'  => array( 'banners', 'headers' ),
-					'content'     =>"<!-- wp:group {\"layout\":{\"type\":\"constrained\"}} -->
-					<div class=\"wp-block-group\">
-					<!-- wp:spacer -->
-					<div style=\"height:100px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>
-					<!-- /wp:spacer -->
-					
-					<!-- wp:heading {\"textAlign\":\"center\",\"level\":3} -->
-					<h3 class=\"wp-block-heading has-text-align-center\">Logo slider</h3>
-					<!-- /wp:heading -->
-					<!-- wp:heading {\"textAlign\":\"center\",\"level\":4} -->
-					<h4 class=\"wp-block-heading has-text-align-center\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.&nbsp;</h4>
-					<!-- /wp:heading -->
-					
-					<!-- wp:shortcode -->
-					[logo_slider_splide]
-					<!-- /wp:shortcode -->
-					
-					<!-- wp:spacer -->
-					<div style=\"height:100px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>
-					<!-- /wp:spacer -->
-					
-					</div>
-					<!-- /wp:group -->
-					",
-			)
-		);
-
-
 		// Testimonials 
 		register_block_pattern(
 			'Fluxor/fluxor-testimonials',

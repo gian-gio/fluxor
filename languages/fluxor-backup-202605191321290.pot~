@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Fluxor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 13:21+0000\n"
+"POT-Creation-Date: 2026-05-19 08:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -38,12 +38,12 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: functions/patterns.php:871
+#: functions/patterns.php:906
 msgctxt "Block pattern description"
 msgid " Three-column contact block with text and link icons"
 msgstr ""
 
-#: functions/patterns.php:542
+#: functions/patterns.php:577
 msgctxt "Block pattern description"
 msgid "A testimonials section with, photo, name, text and valuation."
 msgstr ""
@@ -66,12 +66,17 @@ msgctxt "Block pattern description"
 msgid "Last three article blog"
 msgstr ""
 
+#: functions/patterns.php:542
+msgctxt "Block pattern description"
+msgid "Logo slider with destination url."
+msgstr ""
+
 #: functions/patterns.php:484
 msgctxt "Block pattern description"
 msgid "Media text with 2 blocks with alternating image text positions."
 msgstr ""
 
-#: functions/patterns.php:749
+#: functions/patterns.php:784
 msgctxt "Block pattern description"
 msgid "Two column accordion block"
 msgstr ""
@@ -83,7 +88,7 @@ msgid ""
 "column there are 4 blocks with icons and text"
 msgstr ""
 
-#: functions/patterns.php:714
+#: functions/patterns.php:749
 msgctxt "Block pattern description"
 msgid "YouTube video block with title"
 msgstr ""
@@ -138,11 +143,11 @@ msgstr ""
 msgid "Fluxor"
 msgstr ""
 
-#: functions/patterns.php:748
+#: functions/patterns.php:783
 msgid "fluxor - Accordion"
 msgstr ""
 
-#: functions/patterns.php:870
+#: functions/patterns.php:905
 msgid "fluxor - Contact block"
 msgstr ""
 
@@ -158,6 +163,10 @@ msgstr ""
 msgid "fluxor - Last three article"
 msgstr ""
 
+#: functions/patterns.php:541
+msgid "fluxor - Logo Slider"
+msgstr ""
+
 #: functions/patterns.php:483
 msgid "fluxor - Media Text"
 msgstr ""
@@ -166,11 +175,11 @@ msgstr ""
 msgid "fluxor - Our Team"
 msgstr ""
 
-#: functions/patterns.php:541
+#: functions/patterns.php:576
 msgid "fluxor - Testimonials"
 msgstr ""
 
-#: functions/patterns.php:713
+#: functions/patterns.php:748
 msgid "fluxor - Video block"
 msgstr ""
 
@@ -228,11 +237,6 @@ msgstr ""
 
 #: functions/customizer.php:161
 msgid "Header Color Background"
-msgstr ""
-
-#: page-template/page-reserved.php:26
-#, php-format
-msgid "Hi, %s"
 msgstr ""
 
 #: functions/customizer.php:158
