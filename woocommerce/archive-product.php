@@ -41,8 +41,9 @@
         <div class="shop-products">
 
             <div class="category-list">
-                <h3>Categorie</h3>
+                <h3><?php esc_html_e( 'Categories', 'fluxor' ); ?></h3>
                 <?php
+                if ( ! function_exists( 'fluxor_display_nested_product_categories' ) ) {
                 function fluxor_display_nested_product_categories($parent_id = 0, $level = 1, $max_depth = 3) {
                     $args = array(
                         'taxonomy'   => 'product_cat',
@@ -113,6 +114,7 @@
                     }
 
                     echo '</ul>';
+                }
                 }
 
                 fluxor_display_nested_product_categories(0, 1, 3);

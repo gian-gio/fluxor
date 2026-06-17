@@ -11,7 +11,7 @@ if (empty($product) || !$product->is_visible()) {
 
 <div <?php wc_product_class('custom-product-item', $product); ?>>
 	<div class="container-img-product">
-		<a href="<?php the_permalink(); ?>">
+		<a href="<?php echo esc_url( get_permalink() ); ?>">
 			<?php echo woocommerce_get_product_thumbnail('full'); ?>
 
 			<?php if ($product->is_on_sale()) : ?>
@@ -28,7 +28,7 @@ if (empty($product) || !$product->is_visible()) {
 	</div>
 
     <div class="product-info">
-        <h2 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+        <h2 class="product-title"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a></h2>
 
         <div class="product-price">
             <?php woocommerce_template_loop_price(); ?>

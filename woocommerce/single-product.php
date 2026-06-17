@@ -11,7 +11,7 @@
 <div class="back-button-mobile">
     <div class="grid--xl">
         <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>">
-            <i class='bx bxs-chevron-left'></i> <span>TORNA ALLO SHOP</span>
+            <i class='bx bxs-chevron-left'></i> <span><?php esc_html_e( 'Back to shop', 'fluxor' ); ?></span>
         </a>
     </div>
 </div>
@@ -32,7 +32,7 @@
                 <?php woocommerce_show_product_images(); ?>
             </div>
             <div class="product-details">
-                <h1><?php the_title(); ?></h1>
+                <h1><?php echo esc_html( get_the_title() ); ?></h1>
                 <?php woocommerce_template_single_price(); ?>
 
                 <div class="description-short"><?php woocommerce_template_single_excerpt(); ?></div>
@@ -54,32 +54,32 @@
                         // Marchi (WooCommerce 9.4+ o tassonomia "product_brand")
                             $brands = get_the_term_list(
                                 $product_id,
-                                'product_brand', // cambia qui se il tuo slug è diverso
+                                'product_brand',
                                 '<p><strong>' . esc_html__( 'Brands:', 'fluxor' ) . '</strong> ',
                                 ', ',
                                 '</p>'
                             );
                             if ( $brands ) {
-                                echo $brands;
+                                echo wp_kses_post( $brands );
                             }   
 
                         // Categorie
                         $categories = wc_get_product_category_list(
                             $product->get_id(),
                             ', ', // separatore
-                            '<p><strong>' . __( 'Categories:', 'basetheme' ) . '</strong> ',
+                            '<p><strong>' . __( 'Categories:', 'fluxor' ) . '</strong> ',
                             '</p>'
                         );
-                        echo $categories;
+                        echo wp_kses_post( $categories );
 
                         // Tag prodotto
                         $tags = wc_get_product_tag_list(
                             $product->get_id(),
                             ', ', // separatore
-                            '<p><strong>' . __( 'Tags:', 'basetheme' ) . '</strong> ',
+                            '<p><strong>' . __( 'Tags:', 'fluxor' ) . '</strong> ',
                             '</p>'
                         );
-                        echo $tags;
+                        echo wp_kses_post( $tags );
                     }
                 ?>
                 </div>

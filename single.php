@@ -16,7 +16,7 @@
 
       <span><?php the_time('j M Y '); ?> - <?php the_category(' | '); ?>  <?php the_tags('(', ', ', ')'); ?></span>
 
-      <?php the_post_thumbnail('image-big', array('class' => 'img-res','alt' => get_the_title())); ?>
+      <?php the_post_thumbnail('image-big', array('class' => 'img-res','alt' => the_title_attribute( array( 'echo' => false ) ))); ?>
 
       <?php the_content(); ?>
 
@@ -32,7 +32,7 @@
   <?php endif; ?>
 
   <!-- Back button -->
-  <a href="<?php echo get_post_type_archive_link('post'); ?>" class="back-button">
+  <a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>" class="back-button">
     <span>&laquo;</span> <?php esc_html_e('Back', 'fluxor');  ?>
   </a>
 

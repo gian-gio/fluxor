@@ -248,6 +248,59 @@ add_action( 'wp_head', 'fluxor_output_colors_css' );
 
 
 
+
+/* Footer company information
+-----------------------------------------*/
+
+function fluxor_customize_footer_register( $wp_customize ) {
+    $wp_customize->add_section( 'fluxor_footer_info', array(
+        'title'    => __( 'Footer Info', 'fluxor' ),
+        'priority' => 140,
+    ) );
+
+    $fields = array(
+        'fluxor_footer_company' => array(
+            'default'  => 'Company Name',
+            'label'    => __( 'Company Name', 'fluxor' ),
+            'type'     => 'text',
+            'sanitize' => 'sanitize_text_field',
+        ),
+        'fluxor_footer_address' => array(
+            'default'  => 'Address: address test, 1 ITALY',
+            'label'    => __( 'Address', 'fluxor' ),
+            'type'     => 'textarea',
+            'sanitize' => 'wp_kses_post',
+        ),
+        'fluxor_footer_email' => array(
+            'default'  => 'mail@mysite.com',
+            'label'    => __( 'Email', 'fluxor' ),
+            'type'     => 'email',
+            'sanitize' => 'sanitize_email',
+        ),
+        'fluxor_footer_phone' => array(
+            'default'  => '+39 123 45 67',
+            'label'    => __( 'Phone', 'fluxor' ),
+            'type'     => 'text',
+            'sanitize' => 'sanitize_text_field',
+        ),
+    );
+
+    foreach ( $fields as $setting_id => $field ) {
+        $wp_customize->add_setting( $setting_id, array(
+            'default'           => $field['default'],
+            'transport'         => 'refresh',
+            'sanitize_callback' => $field['sanitize'],
+        ) );
+
+        $wp_customize->add_control( $setting_id, array(
+            'label'   => $field['label'],
+            'section' => 'fluxor_footer_info',
+            'type'    => $field['type'],
+        ) );
+    }
+}
+add_action( 'customize_register', 'fluxor_customize_footer_register' );
+
 /* Whatsapp Button
 -----------------------------------------*/
 

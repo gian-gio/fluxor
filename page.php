@@ -20,7 +20,7 @@
           <div class="grid--xl">
             <div class="col-xl-100">
               <h1 class="fade-in"><?php the_title(); ?></h1>
-              <h2 class="fade-in"><?php echo get_the_excerpt();?></h2>
+              <h2 class="fade-in"><?php echo esc_html( get_the_excerpt() ); ?></h2>
             </div>
           </div>
       </div>

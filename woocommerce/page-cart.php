@@ -8,7 +8,7 @@ Template Name: Custom Cart Page
 
 <div class="title-shop">
     <div class="grid--xl">
-        <h1>Carrello</h1>
+        <h1><?php esc_html_e( 'Cart', 'fluxor' ); ?></h1>
     </div>
 </div>
 

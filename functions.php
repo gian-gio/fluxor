@@ -33,8 +33,8 @@ function fluxor_setup() {
     // Custom image sizes
     add_image_size('image-small', 350, 270, true);
     add_image_size('image-big', 1400, 900, true);
-    add_filter('big_image_size_threshold', function() { return 2560; });
-    add_filter('intermediate_image_sizes_advanced', function($sizes) {
+    add_filter( 'big_image_size_threshold', function() { return 2560; } );
+        add_filter('intermediate_image_sizes_advanced', function($sizes) {
         unset($sizes['medium_large']); 
         unset($sizes['1536x1536']);
         unset($sizes['2048x2048']);
@@ -60,26 +60,26 @@ function fluxor_setup() {
     return $attr;
     }, 10 );
 
-    // Force maximum threshold to 2560px (4K standard)
-    add_filter( 'big_image_size_threshold', function() {
-        return 2560; 
-    });
-
     // Reduce compression quality to save space
     add_filter( 'jpeg_quality', function($quality) {
         return 75;
     });
-
-    // Forces the original to physically resize to 2000px.
+    // Optionally resize oversized originals. Disabled by default to preserve source uploads.
     add_filter( 'wp_handle_upload', function( $upload ) {
-        if ( $upload['type'] != 'image/jpeg' && $upload['type'] != 'image/png' ) return $upload;
+        if ( empty( $upload['type'] ) || ! in_array( $upload['type'], array( 'image/jpeg', 'image/png' ), true ) ) {
+            return $upload;
+        }
+
+        if ( ! apply_filters( 'fluxor_resize_original_upload', false ) ) {
+            return $upload;
+        }
 
         $image = wp_get_image_editor( $upload['file'] );
         if ( ! is_wp_error( $image ) ) {
             $size = $image->get_size();
             if ( $size['width'] > 2000 || $size['height'] > 2000 ) {
                 $image->resize( 2000, 2000, false );
-                $image->save( $upload['file'] ); // Sovrascrive l'originale!
+                $image->save( $upload['file'] );
             }
         }
         return $upload;
@@ -124,50 +124,36 @@ function fluxor_limit_upload_size( $file ) {
 
 
 
-/*Add JSON-LD Structured Data to Your Home Page to Improve Local SEO
+/* Add JSON-LD Structured Data to the home page.
 ---------------------------------------------------------------------------------------- */
 function schema_json_ld_fluxor() {
-    if ( is_front_page() ) {
-        $payload = array(
-            "@context" => "https://schema.org",
-            "@type" => "ProfessionalService",
-            "name" => "Fluxor - Web Design & Development",
-            "image" => "Insert image link",
-            "@id" => "insert your website url",
-            "url" => "insert your website url",
-            "telephone" => " ",
-            "priceRange" => "€€",
-            "address" => array(
-                "@type" => "PostalAddress",
-                "streetAddress" => " ", 
-                "addressLocality" => " ",
-                "addressRegion" => " ",
-                "postalCode" => " ",
-                "addressCountry" => " "
-            ),
-            "geo" => array(
-                "@type" => "GeoCoordinates",
-                "latitude" => 40.9022,
-                "longitude" => 14.1925
-            ),
-            "openingHoursSpecification" => array(
-                "@type" => "OpeningHoursSpecification",
-                "dayOfWeek" => array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
-                "opens" => "09:00",
-                "closes" => "19:00"
-            ),
-            "sameAs" => array(
-                "https://www.linkedin.com/in/your-account-lk", 
-                "https://www.instagram.com/your-account-ig/"
-            ),
-            "description" => "Insert your activity description"
-        );
-
-        echo "\n\n";
-        echo '<script type="application/ld+json">' . json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . '</script>' . "\n";
+    if ( ! is_front_page() ) {
+        return;
     }
+
+    $site_url    = home_url( '/' );
+    $description = get_bloginfo( 'description' );
+    $logo_id     = get_theme_mod( 'custom_logo' );
+    $logo_url    = $logo_id ? wp_get_attachment_image_url( $logo_id, 'full' ) : '';
+    $phone       = get_option( 'whatsapp_phone_number', '' );
+
+    $payload = array_filter(
+        array(
+            '@context'    => 'https://schema.org',
+            '@type'       => 'ProfessionalService',
+            'name'        => get_bloginfo( 'name' ),
+            'image'       => $logo_url,
+            '@id'         => $site_url,
+            'url'         => $site_url,
+            'telephone'   => $phone,
+            'priceRange'  => 'EUR',
+            'description' => $description,
+        )
+    );
+
+    echo "\n" . '<script type="application/ld+json">' . wp_json_encode( $payload, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
 }
-add_action('wp_head', 'schema_json_ld_fluxor');
+add_action( 'wp_head', 'schema_json_ld_fluxor' );
 
 
 
@@ -175,47 +161,24 @@ add_action('wp_head', 'schema_json_ld_fluxor');
 ------------------------------------------------------------------------ */
 add_theme_support( 'woocommerce' );
 
-function fluxor_woocommerce_cart_menu_item($items, $args) {
-    if ($args->theme_location === 'quickmenu' && class_exists('WooCommerce')) {
+function fluxor_woocommerce_cart_menu_item( $items, $args ) {
+    if ( empty( $args->theme_location ) || 'quickmenu' !== $args->theme_location || ! class_exists( 'WooCommerce' ) ) {
+        return $items;
+    }
 
-        // Show account icon
-        $account_url = esc_url(wc_get_page_permalink('myaccount'));
+    $account_url = wc_get_page_permalink( 'myaccount' );
+    $items      .= '<li class="account-item"><a href="' . esc_url( $account_url ) . '" aria-label="' . esc_attr__( 'My account', 'fluxor' ) . '"><i class="bx bxs-user" aria-hidden="true"></i></a></li>';
 
-        if (is_user_logged_in()) {
-            // Logged in user → direct link to the dashboard
-            $items .= '<li class="account-item">
-                <a href="' . $account_url . '">
-                    <i class="bx bxs-user"></i>
-                </a>
-            </li>';
-        } else {
-            // User not logged in → login link (same WooCommerce page)
-            $items .= '<li class="account-item">
-                <a href="' . $account_url . '">
-                    <i class="bx bxs-user"></i>
-                </a>
-            </li>';
-        }
+    if ( get_theme_mod( 'fluxor_show_cart', true ) && WC()->cart ) {
+        $cart_count = WC()->cart->get_cart_contents_count();
+        $cart_url   = wc_get_cart_url();
 
-        
-        // Show cart icon
-        if (get_theme_mod('fluxor_show_cart', true)) {
-            $cart_count = WC()->cart->get_cart_contents_count();
-            $cart_url = wc_get_cart_url();
-
-            $items .= '<li class="cart-item">
-                <a href="' . esc_url($cart_url) . '">
-                    <i class="bx bx-cart-alt"></i> 
-                    <span class="cart-count">' . esc_html($cart_count) . '</span>
-                </a>
-            </li>';
-        }
-
+        $items .= '<li class="cart-item"><a href="' . esc_url( $cart_url ) . '" aria-label="' . esc_attr__( 'Cart', 'fluxor' ) . '"><i class="bx bx-cart-alt" aria-hidden="true"></i><span class="cart-count">' . esc_html( $cart_count ) . '</span></a></li>';
     }
 
     return $items;
 }
-add_filter('wp_nav_menu_items', 'fluxor_woocommerce_cart_menu_item', 10, 2);
+add_filter( 'wp_nav_menu_items', 'fluxor_woocommerce_cart_menu_item', 10, 2 );
 
 
 
@@ -244,7 +207,7 @@ add_action('customize_register', 'fluxor_customize_register');
 
 // Sanification 
 function fluxor_sanitize_checkbox($checked) {
-  return (isset($checked) && $checked === true) ? true : false;
+  return (bool) $checked;
 }
 
 // Prevent WooCommerce from trying to force custom template alignment
@@ -306,13 +269,14 @@ function fluxor_customize_logo_section($wp_customize) {
     
   
     $wp_customize->add_setting('footer_logo', array(
-        'default'   => '', // No logo default
-        'transport' => 'refresh',
+        'default'           => '', // No logo default
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'esc_url_raw',
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control(
         $wp_customize,
-        'footer_logo', // CORRETTO: adesso è una stringa identificativa tra apici, non una variabile vuota
+        'footer_logo',
         array(
             'label'       => __('Footer Logo', 'fluxor'),
             'description' => __('Upload a logo to be used in the footer.', 'fluxor'),
@@ -401,7 +365,7 @@ if ( ! function_exists( 'fluxor_login_logo_title' ) ) {
     function fluxor_login_logo_title() {
         return get_bloginfo('name');
     }
-    // Modificato da login_headertitle a login_headertext (perché deprecato in WP)
+    // Replaces deprecated login_headertitle with login_headertext.
     add_filter( 'login_headertext', 'fluxor_login_logo_title' );
 }
 
@@ -412,13 +376,13 @@ if ( ! function_exists( 'fluxor_login_logo_title' ) ) {
 /* ------------------------------------------------------------------------------ */
 
   function fluxor_scripts() {
+    $theme_version = wp_get_theme()->get( 'Version' );
 
-    wp_enqueue_script('fluxor-gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), null, true);
-    wp_enqueue_script('fluxor-gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', array(), null, true);
-    wp_enqueue_script('fluxor-scripts', get_template_directory_uri() . '/js/scripts.js','','', true );
-
-  }
-
+    wp_enqueue_script( 'fluxor-gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), '3.12.5', true );
+    wp_enqueue_script( 'fluxor-gsap-scrolltrigger-js', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', array( 'fluxor-gsap-js' ), '3.12.5', true );
+    wp_enqueue_script( 'fluxor-splide-js', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js', array(), '4.1.4', true );
+    wp_enqueue_script( 'fluxor-scripts', get_template_directory_uri() . '/js/scripts.js', array( 'fluxor-gsap-js', 'fluxor-gsap-scrolltrigger-js', 'fluxor-splide-js' ), $theme_version, true );
+}
 add_action( 'wp_enqueue_scripts', 'fluxor_scripts' );
 
 
@@ -429,23 +393,36 @@ add_action( 'wp_enqueue_scripts', 'fluxor_scripts' );
 function fluxor_styles() {
 
   // Load Custom fonts
-  $font_headings = sanitize_text_field(get_theme_mod('fluxor_google_font', 'DM Sans'));
-  $font_body = sanitize_text_field(get_theme_mod('fluxor_google_font_body', 'DM Sans'));
-  $font_weight = sanitize_text_field(get_theme_mod('fluxor_google_font_weight', '300,400,700'));
+  $font_headings = sanitize_text_field( get_theme_mod( 'fluxor_google_font', 'DM Sans' ) );
+  $font_body     = sanitize_text_field( get_theme_mod( 'fluxor_google_font_body', 'DM Sans' ) );
+  $font_weight   = sanitize_text_field( get_theme_mod( 'fluxor_google_font_weight', '300,400,700' ) );
 
-  if ($font_headings === $font_body) {
-      wp_enqueue_style('fluxor-google-font', esc_url('//fonts.googleapis.com/css?family=' . $font_headings . ':' . $font_weight));
-  } else {
-      wp_enqueue_style('fluxor-google-font', esc_url('//fonts.googleapis.com/css?family=' . $font_headings . ':' . $font_weight));
-      wp_enqueue_style('fluxor-google-font-body', esc_url('//fonts.googleapis.com/css?family=' . $font_body . ':400,700'));
+  $font_headings_query = str_replace( ' ', '+', $font_headings );
+  $font_body_query     = str_replace( ' ', '+', $font_body );
+
+  wp_enqueue_style(
+      'fluxor-google-font',
+      esc_url( add_query_arg( 'family', $font_headings_query . ':' . $font_weight, 'https://fonts.googleapis.com/css' ) ),
+      array(),
+      null
+  );
+
+  if ( $font_headings !== $font_body ) {
+      wp_enqueue_style(
+          'fluxor-google-font-body',
+          esc_url( add_query_arg( 'family', $font_body_query . ':400,700', 'https://fonts.googleapis.com/css' ) ),
+          array(),
+          null
+      );
   }
-  
+
   // Load CSS files
-    wp_enqueue_style( 'boxicons-style', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
-    wp_enqueue_style( 'lineawesome-style', 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css');
-    wp_enqueue_style( 'woocommerce-style', get_template_directory_uri().'/css/woocommerce.css');
-    wp_enqueue_style( 'simple-style', get_template_directory_uri().'/style.css');
-    wp_enqueue_style( 'custom-style', get_template_directory_uri().'/css/custom_style.css');
+    wp_enqueue_style( 'boxicons-style', 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css', array(), '2.1.4' );
+    wp_enqueue_style( 'lineawesome-style', 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css', array(), '1.3.0' );
+    wp_enqueue_style( 'fluxor-splide-style', 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css', array(), '4.1.4' );
+    wp_enqueue_style( 'woocommerce-style', get_template_directory_uri() . '/css/woocommerce.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'simple-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
+    wp_enqueue_style( 'custom-style', get_template_directory_uri() . '/css/custom_style.css', array( 'simple-style' ), wp_get_theme()->get( 'Version' ) );
 
 }
 
@@ -471,9 +448,9 @@ add_action('wp_head', 'fluxor_customize_css');
 /* Prevents the creation of new unauthorized admin users
 -------------------------------------------------------------------------------------------------------- */
 
-add_action( 'user_register', 'blocca_nuovi_admin', 10, 1 );
+add_action( 'user_register', 'fluxor_block_new_admin_users', 10, 1 );
 
-function blocca_nuovi_admin( $user_id ) {
+function fluxor_block_new_admin_users( $user_id ) {
     $user = get_userdata( $user_id );
 
     if ( in_array( 'administrator', (array) $user->roles ) ) {
@@ -481,13 +458,13 @@ function blocca_nuovi_admin( $user_id ) {
         $user->set_role( 'subscriber' );
 
         // Log the attempt (you can check with "tail -f error_log")
-        error_log( "⚠️ Tentativo bloccato: utente ID {$user_id} voleva ruolo ADMIN." );
+        error_log( "Tentativo bloccato: utente ID {$user_id} voleva ruolo ADMIN." );
 
         // Optional: Send email notification to admin
         wp_mail(
             get_option( 'admin_email' ),
             'Tentativo sospetto di creazione admin',
-            "È stato registrato un utente con ID {$user_id} che tentava di ottenere ruolo ADMIN. È stato declassato a subscriber."
+            "E stato registrato un utente con ID {$user_id} che tentava di ottenere ruolo ADMIN. E stato declassato a subscriber."
         );
     }
 
@@ -520,12 +497,20 @@ add_action('init', 'fluxor_extra_optimization');
 /* Loading Fonts with "Swap" to avoid invisible text during loading
  -------------------------------------------------------------------------------------------------------- */
 
-add_filter('style_loader_tag', 'fluxor_add_font_display_swap', 10, 2);
-function fluxor_add_font_display_swap($tag, $handle) {
-    if ('fluxor-google-font' === $handle || 'fluxor-google-font-body' === $handle) {
-        return str_replace('href', 'display=swap&href', $tag);
+add_filter( 'style_loader_tag', 'fluxor_add_font_display_swap', 10, 2 );
+function fluxor_add_font_display_swap( $tag, $handle ) {
+    if ( 'fluxor-google-font' !== $handle && 'fluxor-google-font-body' !== $handle ) {
+        return $tag;
     }
-    return $tag;
+
+    return preg_replace_callback(
+        "/href=['\"]([^'\"]+)['\"]/",
+        function( $matches ) {
+            $url = add_query_arg( 'display', 'swap', html_entity_decode( $matches[1] ) );
+            return 'href="' . esc_url( $url ) . '"';
+        },
+        $tag
+    );
 }
 
 

@@ -9,11 +9,11 @@
 
           <?php if ( is_search() ) { // display serach title if is search page ?>
 
-              <h1><span><?php esc_html_e( 'Results for: ', 'fluxor'); ?></span> <?php echo $s;  ?></h1>
+              <h1><span><?php esc_html_e( 'Results for: ', 'fluxor'); ?></span> <?php echo esc_html( get_search_query() ); ?></h1>
 
           <?php } else if ( is_category() || is_tag() || is_tax() ) { // display category, tag or taxonomy title if is the relative page ?>
 
-              <h1><?php echo single_cat_title(); // display category,tag or tax title ?></h1>
+              <h1><?php echo esc_html( single_cat_title( '', false ) ); ?></h1>
 
           <?php } else if ( is_home() ){ // display site name if is home ?>
 
@@ -42,10 +42,10 @@
 
                   <div class="col-xl-50 col-md-50 col-sm-100">
                       <div class="blog-list-content">
-                          <a href="<?php the_permalink(); ?>" class="text-dark">
-                              <?php the_post_thumbnail('image-small', array('class' => 'img-res','alt' => get_the_title())); // display featured image of the post ?> 
-                              <h3><?php echo $trimmed_title; ?></h3>
-                              <p><?php echo $trimmed_excerpt; ?></p>
+                          <a href="<?php echo esc_url( get_permalink() ); ?>" class="text-dark">
+                              <?php the_post_thumbnail('image-small', array('class' => 'img-res','alt' => the_title_attribute( array( 'echo' => false ) ))); // display featured image of the post ?> 
+                              <h3><?php echo esc_html( $trimmed_title ); ?></h3>
+                              <p><?php echo esc_html( $trimmed_excerpt ); ?></p>
                           </a>
 
                           <span><?php the_category(' | '); ?></span>
